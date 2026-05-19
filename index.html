@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ta'limus Sunnah Hafizia Madrasa — Supporting Quran education, Hifz, and Islamic learning in Rajshahi, Bangladesh. Donate for Sadaqah Jariyah." />
+  <meta name="keywords" content="Islamic Madrasa Bangladesh, Hifzul Quran Madrasa, Quran Education Charity, Donate to Madrasa, Islamic Education Rajshahi" />
+  <meta property="og:title" content="Ta'limus Sunnah Hafizia Madrasa" />
+  <meta property="og:description" content="Help a child learn the Quran. Earn Sadaqah Jariyah. Support our madrasa in Rajshahi, Bangladesh." />
+  <meta property="og:type" content="website" />
+  <title>Ta'limus Sunnah Hafizia Madrasa | তা'লিমুস সুন্নাহ্ হাফিজিয়া মাদ্রাসা</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Amiri (Arabic/Islamic feel) + Lora (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: { DEFAULT: '#1a4731', light: '#2d6a4f', dark: '#0d2b1d' },
+            emerald: { soft: '#52b788', pale: '#b7e4c7', glow: '#40916c' },
+            gold: { DEFAULT: '#c9a84c', light: '#e8c96a', pale: '#fdf3dc' },
+            cream: { DEFAULT: '#faf7f2', warm: '#f5efe6' },
+          },
+          fontFamily: {
+            display: ['Amiri', 'Georgia', 'serif'],
+            body: ['Lora', 'Georgia', 'serif'],
+            bangla: ['Hind Siliguri', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ============================================================
+       GLOBAL RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: #faf7f2;
+      color: #1a2e1a;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body.lang-bn { font-family: 'Hind Siliguri', sans-serif; }
+
+    /* ============================================================
+       ISLAMIC GEOMETRIC PATTERN (SVG-based, zero weight)
+    ============================================================ */
+    .geo-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%232d6a4f' stroke-width='0.5' opacity='0.18'%3E%3Cpolygon points='30,2 55,15 55,45 30,58 5,45 5,15'/%3E%3Cpolygon points='30,12 47,21 47,39 30,48 13,39 13,21'/%3E%3Cline x1='30' y1='2' x2='30' y2='12'/%3E%3Cline x1='55' y1='15' x2='47' y2='21'/%3E%3Cline x1='55' y1='45' x2='47' y2='39'/%3E%3Cline x1='30' y1='58' x2='30' y2='48'/%3E%3Cline x1='5' y1='45' x2='13' y2='39'/%3E%3Cline x1='5' y1='15' x2='13' y2='21'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    #main-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #main-header.transparent {
+      background: rgba(13, 43, 29, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    @media (max-width: 1023px) {
+      #main-header.transparent {
+        background: rgba(13, 43, 29, 0.88);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+    }
+    #main-header.solid {
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 24px rgba(26,71,49,0.10);
+      border-bottom: 1px solid rgba(26,71,49,0.10);
+    }
+    @media (max-width: 1023px) {
+      #main-header.solid {
+        background: #ffffff;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+    }
+    #main-header.solid .nav-link { color: #1a4731; }
+    #main-header.solid .nav-link:hover { color: #c9a84c; }
+    #main-header.transparent .nav-link { color: #fff; }
+    #main-header.transparent .nav-link:hover { color: #e8c96a; }
+    #main-header.solid .logo-text { color: #1a4731; }
+    #main-header.transparent .logo-text { color: #fff; }
+    #main-header.solid .logo-sub { color: #40916c; }
+    #main-header.transparent .logo-sub { color: rgba(255,255,255,0.75); }
+
+    /* Mobile menu — fixed overlay, NOT inside header flow */
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      background: #ffffff;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+      overflow-y: auto;
+      padding-top: 72px;
+    }
+    #mobile-menu.open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #0d2b1d 0%, #1a4731 40%, #2d6a4f 80%, #1a4731 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-mosque {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 220px;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 220' fill='%23ffffff'%3E%3Crect x='0' y='140' width='1200' height='80'/%3E%3Crect x='80' y='80' width='80' height='60'/%3E%3Cellipse cx='120' cy='80' rx='40' ry='50'/%3E%3Crect x='240' y='100' width='60' height='40'/%3E%3Cellipse cx='270' cy='100' rx='30' ry='38'/%3E%3Crect x='450' y='40' width='100' height='100'/%3E%3Cellipse cx='500' cy='40' rx='50' ry='65'/%3E%3Crect x='480' y='0' width='10' height='50'/%3E%3Ccircle cx='485' cy='0' r='6'/%3E%3Crect x='700' y='80' width='80' height='60'/%3E%3Cellipse cx='740' cy='80' rx='40' ry='50'/%3E%3Crect x='870' y='100' width='60' height='40'/%3E%3Cellipse cx='900' cy='100' rx='30' ry='38'/%3E%3Crect x='1040' y='80' width='80' height='60'/%3E%3Cellipse cx='1080' cy='80' rx='40' ry='50'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+    }
+
+    /* ============================================================
+       SECTION REVEALS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       CARDS
+    ============================================================ */
+    .dept-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dept-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(26,71,49,0.14);
+    }
+
+    /* ============================================================
+       STAT CARDS
+    ============================================================ */
+    .stat-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* ============================================================
+       DONATION CARDS
+    ============================================================ */
+    .donation-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .donation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26,71,49,0.16);
+    }
+    .donation-card.featured {
+      border: 2px solid #c9a84c;
+      background: linear-gradient(135deg, #fff 80%, #fdf3dc 100%);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      height: 8px;
+      border-radius: 99px;
+      background: #e8e0d0;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #2d6a4f, #52b788);
+      width: 0%;
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+    }
+    .gallery-item img {
+      transition: transform 0.4s ease;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,71,49,0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* ============================================================
+       GOLD DIVIDER
+    ============================================================ */
+    .gold-divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, #c9a84c, #e8c96a);
+      border-radius: 99px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       WHATSAPP FLOAT
+    ============================================================ */
+    #whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 900;
+      width: 54px; height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s ease;
+    }
+    #whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f0ebe3; }
+    ::-webkit-scrollbar-thumb { background: #2d6a4f; border-radius: 99px; }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .font-amiri { font-family: 'Amiri', Georgia, serif; }
+    .font-bangla { font-family: 'Hind Siliguri', sans-serif; }
+
+    /* ============================================================
+       COUNTER ANIMATION
+    ============================================================ */
+    .counter-value { display: inline-block; }
+
+    /* ============================================================
+       CONTACT FORM
+    ============================================================ */
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #d4c9b0;
+      border-radius: 10px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      color: #1a2e1a;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: #2d6a4f;
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+    }
+
+    /* ============================================================
+       LANG TOGGLE
+    ============================================================ */
+    .lang-btn {
+      font-size: 13px; font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 99px;
+      border: 1.5px solid currentColor;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* Section accent */
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: 'Lora', serif;
+      color: #40916c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ================================================================
+     WHATSAPP FLOAT BUTTON
+================================================================ -->
+<a id="whatsapp-float" href="https://wa.me/8801761342286" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ================================================================
+     STICKY HEADER
+================================================================ -->
+<header id="main-header" class="transparent" role="banner">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+
+      <!-- LOGO -->
+      <a href="#hero" class="flex items-center gap-3" aria-label="Ta'limus Sunnah Hafizia Madrasa Home">
+        <!-- Logo placeholder: replace this div with your <img> tag -->
+        <div class="logo-placeholder w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center bg-white/20 flex-shrink-0" style="border-color:#c9a84c;" aria-hidden="true">
+          <!-- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg> -->
+          <img src="img/logo-tshm.png" alt="">
+        </div>
+        <div>
+          <div class="logo-text font-amiri text-lg leading-tight font-bold transition-colors duration-300" data-en="Ta'limus Sunnah" data-bn="তা'লিমুস সুন্নাহ্">Ta'limus Sunnah</div>
+          <div class="logo-sub text-xs transition-colors duration-300 font-bangla" data-en="Hafizia Madrasa" data-bn="হাফিজিয়া মাদ্রাসা">Hafizia Madrasa</div>
+        </div>
+      </a>
+
+      <!-- Desktop NAV -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+        <a href="#about" class="nav-link text-sm font-medium transition-colors duration-200" data-en="About" data-bn="আমাদের সম্পর্কে">About</a>
+        <a href="#departments" class="nav-link text-sm font-medium transition-colors duration-200" data-en="Departments" data-bn="বিভাগ">Departments</a>
+        <a href="#donate" class="nav-link text-sm font-medium transition-colors duration-200" data-en="Donate" data-bn="দান করুন">Donate</a>
+        <a href="#gallery" class="nav-link text-sm font-medium transition-colors duration-200" data-en="Gallery" data-bn="গ্যালারি">Gallery</a>
+        <a href="#contact" class="nav-link text-sm font-medium transition-colors duration-200" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
+      </nav>
+
+      <!-- Desktop action buttons -->
+      <div class="hidden lg:flex items-center gap-3">
+        <!-- Language Toggle -->
+        <button id="lang-toggle-desktop" class="lang-btn text-white border-white/60 hover:bg-white/20" onclick="toggleLanguage()" aria-label="Toggle language">
+          বাংলা
+        </button>
+        <!-- Result Button -->
+        <a href="https://script.google.com/macros/s/AKfycbzz0uX-k5gpfxVGznET3M5AYqISK2dKzJZEJ4GIv7beqwXLUyv4SacYF3IPgmYDjDJHAw/exec?page=public-results" class="text-sm px-4 py-2 rounded-lg border border-gold/70 text-gold font-medium hover:bg-gold/10 transition-colors duration-200" style="color:#c9a84c;border-color:rgba(201,168,76,0.7);" data-en="Results" data-bn="ফলাফল">Results</a>
+        <!-- Admin Login -->
+        <a href="https://script.google.com/macros/s/AKfycbzz0uX-k5gpfxVGznET3M5AYqISK2dKzJZEJ4GIv7beqwXLUyv4SacYF3IPgmYDjDJHAw/exec" class="text-sm px-4 py-2 rounded-lg bg-forest text-white font-medium hover:bg-forest-light transition-colors duration-200" style="background:#1a4731;" data-en="Admin Login" data-bn="অ্যাডমিন">Admin Login</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" class="lg:hidden p-2 rounded-lg" aria-label="Open mobile menu" aria-expanded="false" onclick="toggleMobileMenu()">
+        <svg id="ham-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</header>
+
+<!-- Mobile Menu — full-screen overlay, completely outside header -->
+<div id="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+  <button onclick="closeMobileMenu()" style="position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;background:#f0faf4;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="Close menu">
+    <svg width="20" height="20" fill="none" stroke="#1a4731" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <div style="padding:20px 16px 32px;">
+    <div style="margin-bottom:24px;padding:0 8px;">
+      <div class="font-amiri" style="font-size:20px;font-weight:700;color:#1a4731;" data-en="Ta'limus Sunnah" data-bn="তা'লিমুস সুন্নাহ্">Ta'limus Sunnah</div>
+      <div style="font-size:13px;color:#40916c;" data-en="Hafizia Madrasa" data-bn="হাফিজিয়া মাদ্রাসা">Hafizia Madrasa</div>
+    </div>
+    <a href="#about" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;font-weight:600;font-size:17px;color:#1a4731;text-decoration:none;margin-bottom:4px;" data-en="About" data-bn="আমাদের সম্পর্কে">About</a>
+    <a href="#departments" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;font-weight:600;font-size:17px;color:#1a4731;text-decoration:none;margin-bottom:4px;" data-en="Departments" data-bn="বিভাগ">Departments</a>
+    <a href="#donate" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;font-weight:600;font-size:17px;color:#1a4731;text-decoration:none;margin-bottom:4px;" data-en="Donate" data-bn="দান করুন">Donate</a>
+    <a href="#gallery" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;font-weight:600;font-size:17px;color:#1a4731;text-decoration:none;margin-bottom:4px;" data-en="Gallery" data-bn="গ্যালারি">Gallery</a>
+    <a href="#contact" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;font-weight:600;font-size:17px;color:#1a4731;text-decoration:none;margin-bottom:4px;" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
+    <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e5e7eb;display:flex;flex-direction:column;gap:10px;">
+      <button onclick="toggleLanguage()" id="lang-toggle-mobile" style="padding:14px;border-radius:12px;text-align:center;font-weight:500;border:1.5px solid #2d6a4f;color:#1a4731;background:transparent;cursor:pointer;font-size:15px;">Switch to বাংলা</button>
+      <a href="#RESULT_URL" style="display:block;padding:14px;border-radius:12px;text-align:center;font-weight:500;border:1.5px solid #c9a84c;color:#c9a84c;text-decoration:none;font-size:15px;" data-en="Results" data-bn="ফলাফল">Results</a>
+      <a href="#ADMIN_URL" style="display:block;padding:14px;border-radius:12px;text-align:center;font-weight:600;color:#fff;background:#1a4731;text-decoration:none;font-size:15px;" data-en="Admin Login" data-bn="অ্যাডমিন লগইন">Admin Login</a>
+      <a href="#donate" onclick="closeMobileMenu()" style="display:block;padding:16px;border-radius:12px;text-align:center;font-weight:700;color:#0d2b1d;background:linear-gradient(135deg,#c9a84c,#e8c96a);text-decoration:none;font-size:16px;margin-top:4px;" data-en="❤ Donate Now" data-bn="❤ এখনই দান করুন">❤ Donate Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     HERO SECTION
+================================================================ -->
+<section id="hero" class="relative flex items-center justify-center pt-16" aria-label="Hero">
+  <!-- Geometric pattern overlay -->
+  <div class="geo-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+  <!-- Mosque silhouette -->
+  <div class="hero-mosque" aria-hidden="true"></div>
+  <!-- Radial glow -->
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center top, rgba(82,183,136,0.18) 0%, transparent 65%);" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-24 lg:py-40">
+    <!-- Arabic name -->
+    <p class="font-amiri text-2xl text-emerald-200 mb-3 opacity-90" aria-label="Arabic name" style="color:rgba(183,228,199,0.85);">مدرسة تعليم السنة الحافظية</p>
+
+    <!-- Gold star ornament -->
+    <div class="flex items-center justify-center gap-3 mb-6" aria-hidden="true">
+      <div style="height:1px;width:60px;background:linear-gradient(90deg,transparent,#c9a84c);"></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#c9a84c"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>
+      <div style="height:1px;width:60px;background:linear-gradient(90deg,#c9a84c,transparent);"></div>
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="font-amiri text-4xl sm:text-5xl lg:text-6xl text-white font-bold leading-tight mb-4" data-en="Support Quran Education &amp; Build Sadaqah Jariyah" data-bn="কুরআন শিক্ষায় সহায়তা করুন ও সদকায়ে জারিয়াহ গড়ুন">
+      Support Quran Education &amp; Build Sadaqah Jariyah
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-lg sm:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto leading-relaxed" style="color:rgba(183,228,199,0.9);" data-en="Helping students grow with the light of the Quran and Sunnah — Ta'limus Sunnah Hafizia Madrasa, Rajshahi, Bangladesh." data-bn="কুরআন ও সুন্নাহর আলোয় শিক্ষার্থীদের আলোকিত করতে সাহায্য করুন — তা'লিমুস সুন্নাহ্ হাফিজিয়া মাদ্রাসা, রাজশাহী।">
+      Helping students grow with the light of the Quran and Sunnah — Ta'limus Sunnah Hafizia Madrasa, Rajshahi, Bangladesh.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#" onclick="openDonateModal('','Donate to Madrasa');return false;" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-lg text-forest transition-all duration-300 hover:scale-105 hover:shadow-2xl" style="background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0d2b1d;" data-en="Donate Now" data-bn="এখনই দান করুন">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        Donate Now
+      </a>
+      <a href="#about" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-lg text-white border-2 transition-all duration-300 hover:bg-white/10" style="border-color:rgba(255,255,255,0.45);" data-en="Learn More" data-bn="আরও জানুন">
+        Learn More
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4-4 4M3 12h18"/></svg>
+      </a>
+    </div>
+
+    <!-- Mini stats strip -->
+    <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+      <div class="stat-card rounded-2xl p-4 text-center">
+        <div class="text-3xl font-bold text-white font-amiri counter" data-target="85">0</div>
+        <div class="text-xs mt-1" style="color:rgba(183,228,199,0.8);" data-en="Students" data-bn="শিক্ষার্থী">Students</div>
+      </div>
+      <div class="stat-card rounded-2xl p-4 text-center">
+        <div class="text-3xl font-bold text-white font-amiri counter" data-target="5">0</div>
+        <div class="text-xs mt-1" style="color:rgba(183,228,199,0.8);" data-en="Teachers" data-bn="শিক্ষক">Teachers</div>
+      </div>
+      <div class="stat-card rounded-2xl p-4 text-center">
+        <div class="text-3xl font-bold text-white font-amiri counter" data-target="4">0</div>
+        <div class="text-xs mt-1" style="color:rgba(183,228,199,0.8);" data-en="Departments" data-bn="বিভাগ">Departments</div>
+      </div>
+      <div class="stat-card rounded-2xl p-4 text-center">
+        <div class="text-3xl font-bold text-white font-amiri counter" data-target="2023">0</div>
+        <div class="text-xs mt-1" style="color:rgba(183,228,199,0.8);" data-en="Est. Year" data-bn="প্রতিষ্ঠাবর্ষ">Est. Year</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60" aria-hidden="true">
+    <div style="width:1.5px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.7),transparent);animation:pulse 2s infinite;"></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     ABOUT SECTION
+================================================================ -->
+<section id="about" class="py-20 lg:py-32" style="background:linear-gradient(180deg,#fff 0%,#faf7f2 100%);" aria-labelledby="about-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <p class="section-label mb-3" data-en="Our Story" data-bn="আমাদের গল্প">Our Story</p>
+      <h2 id="about-heading" class="font-amiri text-4xl lg:text-5xl font-bold mb-5" style="color:#1a4731;" data-en="Rooted in Quran &amp; Sunnah" data-bn="কুরআন ও সুন্নাহর আলোয় প্রতিষ্ঠিত">Rooted in Quran &amp; Sunnah</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Visual block -->
+      <div class="reveal reveal-delay-1">
+        <!-- Decorative stacked card -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-full h-full rounded-3xl opacity-30" style="background:#b7e4c7;"></div>
+          <div class="absolute -top-2 -left-2 w-full h-full rounded-3xl opacity-50" style="background:#52b788;"></div>
+          <div class="relative rounded-3xl overflow-hidden" style="background:linear-gradient(135deg,#1a4731,#2d6a4f);min-height:320px;">
+            <div class="geo-pattern absolute inset-0 opacity-20" aria-hidden="true"></div>
+            <div class="relative z-10 p-10 h-full flex flex-col justify-between" style="min-height:320px;">
+              <!-- Quran verse -->
+              <div class="text-center">
+                <p class="font-amiri text-3xl text-white leading-relaxed mb-3">وَعَلَّمَ آدَمَ الْأَسْمَاءَ كُلَّهَا</p>
+                <p class="text-emerald-200 text-sm italic" style="color:rgba(183,228,199,0.85);" data-en=""And He taught Adam the names of all things." — Al-Baqarah 2:31" data-bn=""তিনি আদমকে সব কিছুর নাম শিক্ষা দিলেন।" — সুরা বাকারা ২:৩১">"And He taught Adam the names of all things." — Al-Baqarah 2:31</p>
+              </div>
+              <!-- Info tiles -->
+              <div class="grid grid-cols-2 gap-3 mt-8">
+                <div class="rounded-2xl p-4 text-center" style="background:rgba(255,255,255,0.12);">
+                  <p class="text-white font-bold text-lg font-amiri">2023</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.7);" data-en="Established" data-bn="প্রতিষ্ঠিত">Established</p>
+                </div>
+                <div class="rounded-2xl p-4 text-center" style="background:rgba(255,255,255,0.12);">
+                  <p class="text-white font-bold text-sm font-amiri leading-tight">Noorani Board</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.7);" data-en="Affiliation" data-bn="অধিভুক্তি">Affiliation</p>
+                </div>
+                <div class="rounded-2xl p-4 text-center col-span-2" style="background:rgba(255,255,255,0.12);">
+                  <p class="text-white font-semibold text-sm" data-en="Basantapur, Bagdhani, Paba, Rajshahi" data-bn="বসন্তপুর, বাগধানী, পবা, রাজশাহী">Basantapur, Bagdhani, Paba, Rajshahi</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.7);" data-en="Location" data-bn="অবস্থান">Location</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Text content -->
+      <div class="reveal reveal-delay-2 flex flex-col gap-6">
+        <div class="rounded-2xl p-6 border-l-4" style="background:#f0faf4;border-color:#2d6a4f;">
+          <h3 class="font-amiri text-xl font-bold mb-2" style="color:#1a4731;" data-en="Our Mission" data-bn="আমাদের লক্ষ্য">Our Mission</h3>
+          <p class="leading-relaxed" style="color:#3a5a3a;font-size:15px;" data-en="To nurture the next generation of Muslims through authentic Quranic education, Hifz, and Islamic values — producing not just students, but guardians of the Quran." data-bn="কুরআনের হাফিজ ও ইসলামের আদর্শ ধারণকারী প্রজন্ম তৈরি করাই আমাদের লক্ষ্য।">To nurture the next generation of Muslims through authentic Quranic education, Hifz, and Islamic values — producing not just students, but guardians of the Quran.</p>
+        </div>
+
+        <div class="rounded-2xl p-6 border-l-4" style="background:#fdf9ee;border-color:#c9a84c;">
+          <h3 class="font-amiri text-xl font-bold mb-2" style="color:#1a4731;" data-en="Our Vision" data-bn="আমাদের দৃষ্টিভঙ্গি">Our Vision</h3>
+          <p class="leading-relaxed" style="color:#3a5a3a;font-size:15px;" data-en="To become a leading center of Islamic learning in Rajshahi, providing free and affordable education to children from all backgrounds — especially the underprivileged." data-bn="রাজশাহীর অন্যতম প্রধান ইসলামী শিক্ষাকেন্দ্র হিসেবে প্রতিষ্ঠিত হওয়া — বিশেষত সুবিধাবঞ্চিত শিশুদের কুরআনের আলোয় আলোকিত করা।">To become a leading center of Islamic learning in Rajshahi, providing free and affordable education to children from all backgrounds — especially the underprivileged.</p>
+        </div>
+
+        <div class="rounded-2xl p-6" style="background:#f5efe6;">
+          <h3 class="font-amiri text-xl font-bold mb-3" style="color:#1a4731;" data-en="Affiliation" data-bn="অধিভুক্তি">Affiliation</h3>
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-1" style="background:#2d6a4f;">
+              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold" style="color:#1a4731;" data-en="Noorani Ta'limul Quran Board" data-bn="নুরানী তা'লিমুল কুরআন বোর্ড">Noorani Ta'limul Quran Board</p>
+              <p class="text-sm mt-1" style="color:#5a7a5a;" data-en="Chittagong, Bangladesh — Official Certification Body" data-bn="চট্টগ্রাম, বাংলাদেশ — সরকারি সনদপ্রাপ্ত বোর্ড">Chittagong, Bangladesh — Official Certification Body</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     DEPARTMENTS SECTION
+================================================================ -->
+<section id="departments" class="py-20 lg:py-32" style="background:#faf7f2;" aria-labelledby="dept-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <p class="section-label mb-3" data-en="What We Teach" data-bn="আমরা কী পড়াই">What We Teach</p>
+      <h2 id="dept-heading" class="font-amiri text-4xl lg:text-5xl font-bold mb-5" style="color:#1a4731;" data-en="Our Departments" data-bn="আমাদের বিভাগসমূহ">Our Departments</h2>
+      <div class="gold-divider"></div>
+      <p class="mt-5 max-w-xl mx-auto text-base" style="color:#5a7a5a;" data-en="From Play Group to Class 5 — our structured curriculum ensures every student grows in knowledge, character, and love for the Quran." data-bn="প্লে গ্রুপ থেকে শ্রেণি ৫ পর্যন্ত — প্রতিটি শিক্ষার্থী জ্ঞান, চরিত্র ও কুরআনের প্রেমে বড় হোক।">From Play Group to Class 5 — our structured curriculum ensures every student grows in knowledge, character, and love for the Quran.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Noorani -->
+      <div class="dept-card rounded-3xl p-7 bg-white shadow-sm border border-green-50 reveal reveal-delay-1">
+        <div class="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center" style="background:linear-gradient(135deg,#e8f5ee,#b7e4c7);">
+          <svg width="28" height="28" fill="none" stroke="#2d6a4f" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h3 class="font-amiri text-xl font-bold mb-2" style="color:#1a4731;" data-en="Noorani" data-bn="নুরানী বিভাগ">Noorani</h3>
+        <p class="text-sm leading-relaxed" style="color:#5a7a5a;" data-en="Foundation-level Quran reading with proper Tajweed rules. Perfect for young beginners learning Arabic letters and pronunciation." data-bn="সঠিক তাজওয়ীদ সহ কুরআন পড়ার মৌলিক শিক্ষা। আরবি হরফ ও উচ্চারণ শেখার জন্য আদর্শ।">Foundation-level Quran reading with proper Tajweed rules. Perfect for young beginners learning Arabic letters and pronunciation.</p>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#e8f5ee;color:#2d6a4f;" data-en="Beginner Level" data-bn="প্রাথমিক স্তর">Beginner Level</span>
+        </div>
+      </div>
+
+      <!-- Najera -->
+      <div class="dept-card rounded-3xl p-7 bg-white shadow-sm border border-green-50 reveal reveal-delay-2">
+        <div class="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center" style="background:linear-gradient(135deg,#fdf9ee,#fdf3dc);">
+          <svg width="28" height="28" fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+        </div>
+        <h3 class="font-amiri text-xl font-bold mb-2" style="color:#1a4731;" data-en="Najera" data-bn="নাজেরা বিভাগ">Najera</h3>
+        <p class="text-sm leading-relaxed" style="color:#5a7a5a;" data-en="Fluent Quran recitation from the Mushaf. Students develop speed, accuracy, and deep familiarity with the words of Allah." data-bn="মুসহাফ থেকে সাবলীল কুরআন তিলাওয়াত। শিক্ষার্থীরা আল্লাহর বাণীর সাথে গভীর পরিচয় গড়ে তোলে।">Fluent Quran recitation from the Mushaf. Students develop speed, accuracy, and deep familiarity with the words of Allah.</p>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#fdf9ee;color:#c9a84c;" data-en="Intermediate" data-bn="মধ্যবর্তী স্তর">Intermediate</span>
+        </div>
+      </div>
+
+      <!-- Hifzul Quran -->
+      <div class="dept-card rounded-3xl p-7 bg-white shadow-sm border-2 reveal reveal-delay-3" style="border-color:#2d6a4f;background:linear-gradient(135deg,#fff 80%,#f0faf4 100%);">
+        <div class="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center" style="background:linear-gradient(135deg,#2d6a4f,#1a4731);">
+          <svg width="28" height="28" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div class="flex items-center gap-2 mb-2">
+          <h3 class="font-amiri text-xl font-bold" style="color:#1a4731;" data-en="Hifzul Quran" data-bn="হিফজুল কুরআন বিভাগ">Hifzul Quran</h3>
+          <span class="text-xs px-2 py-0.5 rounded-full text-white font-semibold" style="background:#c9a84c;">★</span>
+        </div>
+        <p class="text-sm leading-relaxed" style="color:#5a7a5a;" data-en="The crown of our institution. Students memorize the entire Quran under dedicated teachers — becoming Hafiz of the Quran for life." data-bn="আমাদের প্রতিষ্ঠানের মুকুট। শিক্ষার্থীরা নিবেদিত শিক্ষকের অধীনে সম্পূর্ণ কুরআন মুখস্থ করে।">The crown of our institution. Students memorize the entire Quran under dedicated teachers — becoming Hafiz of the Quran for life.</p>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <span class="text-xs px-3 py-1 rounded-full font-medium text-white" style="background:#2d6a4f;" data-en="⭐ Most Prestigious" data-bn="⭐ সর্বোচ্চ মর্যাদাপূর্ণ">⭐ Most Prestigious</span>
+        </div>
+      </div>
+
+      <!-- Kitab Department -->
+      <div class="dept-card rounded-3xl p-7 bg-white shadow-sm border border-green-50 reveal reveal-delay-4">
+        <div class="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center" style="background:linear-gradient(135deg,#e8eef5,#c8d8e8);">
+          <svg width="28" height="28" fill="none" stroke="#2c5282" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+        </div>
+        <h3 class="font-amiri text-xl font-bold mb-2" style="color:#1a4731;" data-en="Kitab Department" data-bn="কিতাব বিভাগ">Kitab Department</h3>
+        <p class="text-sm leading-relaxed" style="color:#5a7a5a;" data-en="Classical Islamic studies including Fiqh, Aqeedah, Hadith, and Arabic — building scholars grounded in the Sunnah." data-bn="ফিকহ, আকিদা, হাদিস ও আরবি সহ ক্লাসিক ইসলামী পাঠ্যক্রম — সুন্নাহভিত্তিক আলেম তৈরি।">Classical Islamic studies including Fiqh, Aqeedah, Hadith, and Arabic — building scholars grounded in the Sunnah.</p>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:#e8eef5;color:#2c5282;" data-en="Advanced Studies" data-bn="উচ্চতর পাঠ">Advanced Studies</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facilities badges -->
+    <div class="mt-12 flex flex-wrap justify-center gap-4 reveal">
+      <div class="flex items-center gap-2 px-5 py-3 rounded-full border font-medium text-sm" style="background:#f0faf4;border-color:#b7e4c7;color:#1a4731;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <span data-en="Residential Boarding" data-bn="আবাসিক ব্যবস্থা">Residential Boarding</span>
+      </div>
+      <div class="flex items-center gap-2 px-5 py-3 rounded-full border font-medium text-sm" style="background:#f0faf4;border-color:#b7e4c7;color:#1a4731;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <span data-en="Non-Residential" data-bn="অনাবাসিক ব্যবস্থা">Non-Residential</span>
+      </div>
+      <div class="flex items-center gap-2 px-5 py-3 rounded-full border font-medium text-sm" style="background:#f0faf4;border-color:#b7e4c7;color:#1a4731;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span data-en="Play Group to Class 5" data-bn="প্লে গ্রুপ থেকে শ্রেণি ৫">Play Group to Class 5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATISTICS SECTION
+================================================================ -->
+<section id="statistics" class="py-20 lg:py-28 relative overflow-hidden" style="background:linear-gradient(135deg,#0d2b1d 0%,#1a4731 50%,#2d6a4f 100%);" aria-labelledby="stats-heading">
+  <div class="geo-pattern absolute inset-0 opacity-15" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-14 reveal">
+      <p class="section-label mb-3" style="color:#52b788;" data-en="By The Numbers" data-bn="সংখ্যায় আমরা">By The Numbers</p>
+      <h2 id="stats-heading" class="font-amiri text-4xl font-bold text-white mb-4" data-en="Growing Every Day" data-bn="প্রতিদিন এগিয়ে চলছি">Growing Every Day</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="stat-card rounded-3xl p-8 text-center reveal reveal-delay-1">
+        <div class="text-5xl font-bold text-white font-amiri mb-2"><span class="counter" data-target="85">0</span></div>
+        <div class="text-emerald-200 font-medium" style="color:rgba(183,228,199,0.9);" data-en="Active Students" data-bn="সক্রিয় শিক্ষার্থী">Active Students</div>
+        <div class="mt-3 text-xs" style="color:rgba(183,228,199,0.6);" data-en="Residential & Non-Residential" data-bn="আবাসিক ও অনাবাসিক">Residential & Non-Residential</div>
+      </div>
+      <div class="stat-card rounded-3xl p-8 text-center reveal reveal-delay-2">
+        <div class="text-5xl font-bold text-white font-amiri mb-2"><span class="counter" data-target="5">0</span></div>
+        <div class="text-emerald-200 font-medium" style="color:rgba(183,228,199,0.9);" data-en="Dedicated Teachers" data-bn="নিবেদিত শিক্ষক">Dedicated Teachers</div>
+        <div class="mt-3 text-xs" style="color:rgba(183,228,199,0.6);" data-en="Qualified & Experienced" data-bn="যোগ্য ও অভিজ্ঞ">Qualified & Experienced</div>
+      </div>
+      <div class="stat-card rounded-3xl p-8 text-center reveal reveal-delay-3">
+        <div class="text-5xl font-bold text-white font-amiri mb-2"><span class="counter" data-target="4">0</span></div>
+        <div class="text-emerald-200 font-medium" style="color:rgba(183,228,199,0.9);" data-en="Departments" data-bn="বিভাগ">Departments</div>
+        <div class="mt-3 text-xs" style="color:rgba(183,228,199,0.6);" data-en="Noorani to Kitab" data-bn="নুরানী থেকে কিতাব">Noorani to Kitab</div>
+      </div>
+      <div class="stat-card rounded-3xl p-8 text-center reveal reveal-delay-4">
+        <div class="text-5xl font-bold font-amiri mb-2" style="color:#e8c96a;"><span class="counter" data-target="2023">0</span></div>
+        <div class="text-emerald-200 font-medium" style="color:rgba(183,228,199,0.9);" data-en="Year Founded" data-bn="প্রতিষ্ঠার বছর">Year Founded</div>
+        <div class="mt-3 text-xs" style="color:rgba(183,228,199,0.6);" data-en="Serving the Ummah" data-bn="উম্মাহর সেবায়">Serving the Ummah</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     DONATION SECTION (HERO-WEIGHT)
+================================================================ -->
+<section id="donate" class="py-20 lg:py-32 relative" style="background:linear-gradient(180deg,#faf7f2 0%,#f0fdf4 50%,#faf7f2 100%);" aria-labelledby="donate-heading">
+  <!-- Top gold bar accent -->
+  <div class="absolute top-0 left-0 right-0 h-1" style="background:linear-gradient(90deg,#c9a84c,#52b788,#c9a84c);" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center mb-4 reveal">
+      <p class="section-label mb-3" data-en="Give & Earn Reward" data-bn="দান করুন ও পুরস্কার অর্জন করুন">Give & Earn Reward</p>
+      <h2 id="donate-heading" class="font-amiri text-4xl lg:text-6xl font-bold mb-5" style="color:#1a4731;" data-en="Your Sadaqah Jariyah" data-bn="আপনার সদকায়ে জারিয়াহ">Your Sadaqah Jariyah</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <!-- Emotional message -->
+    <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+      <p class="text-lg leading-relaxed" style="color:#3a5a3a;" data-en="The Prophet ﷺ said: 'When a person dies, all their deeds end except three: Sadaqah Jariyah, beneficial knowledge, or a righteous child who prays for them.' Your donation today can give a child the Quran — a reward that continues for eternity." data-bn="রাসুল ﷺ বলেছেন: 'যখন কেউ মারা যায়, তিন ছাড়া সব আমল বন্ধ হয়ে যায়: সদকায়ে জারিয়া, কার্যকর জ্ঞান, বা পুণ্যবান সন্তান যে তার জন্য দোয়া করে।' আজ আপনার দান একটি শিশুকে কুরআন শেখাতে পারে।">The Prophet ﷺ said: 'When a person dies, all their deeds end except three: Sadaqah Jariyah, beneficial knowledge, or a righteous child who prays for them.' Your donation today can give a child the Quran — a reward that continues for eternity.</p>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="max-w-2xl mx-auto mb-14 rounded-3xl p-8 border-2 reveal" style="background:#fff;border-color:#2d6a4f;">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-amiri text-xl font-bold" style="color:#1a4731;" data-en="Monthly Goal Progress" data-bn="মাসিক লক্ষ্যমাত্রার অগ্রগতি">Monthly Goal Progress</h3>
+        <span class="font-bold text-lg" style="color:#2d6a4f;">68%</span>
+      </div>
+      <div class="progress-bar mb-3">
+        <div class="progress-fill" data-width="68" style="background:linear-gradient(90deg,#2d6a4f,#52b788);"></div>
+      </div>
+      <div class="flex justify-between text-sm" style="color:#5a7a5a;">
+        <span data-en="৳34,000 raised" data-bn="৳৩৪,০০০ সংগৃহীত">৳34,000 raised</span>
+        <span data-en="Goal: ৳50,000" data-bn="লক্ষ্য: ৳৫০,০০০">Goal: ৳50,000</span>
+      </div>
+    </div>
+
+    <!-- Donation cards grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+
+      <!-- 500৳ -->
+      <div class="donation-card rounded-3xl p-6 bg-white border border-gray-100 shadow-sm reveal reveal-delay-1">
+        <div class="text-center mb-4">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:linear-gradient(135deg,#e8f5ee,#b7e4c7);">
+            <svg width="28" height="28" fill="none" stroke="#2d6a4f" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <div class="font-amiri text-4xl font-bold mb-1" style="color:#1a4731;">৳500</div>
+          <div class="progress-bar my-3"><div class="progress-fill" data-width="45"></div></div>
+          <div class="text-xs mb-1" style="color:#5a7a5a;" data-en="45% funded" data-bn="৪৫% অর্থায়িত">45% funded</div>
+        </div>
+        <h3 class="font-semibold text-center mb-2" style="color:#1a4731;" data-en="Quran Books for Students" data-bn="শিক্ষার্থীদের জন্য কুরআনের বই">Quran Books for Students</h3>
+        <p class="text-xs text-center mb-5" style="color:#5a7a5a;" data-en="Provide a full set of learning materials to help a child start their Quranic journey." data-bn="একটি শিশুকে কুরআনের পথে যাত্রা শুরু করতে সাহায্য করুন।">Provide a full set of learning materials to help a child start their Quranic journey.</p>
+        <a href="#" onclick="openDonateModal('৳500','Quran Books for Students');return false;" class="block text-center py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105" style="background:#2d6a4f;color:#fff;" data-en="Donate ৳500" data-bn="৳৫০০ দান করুন">Donate ৳500</a>
+      </div>
+
+      <!-- 1000৳ -->
+      <div class="donation-card rounded-3xl p-6 bg-white border border-gray-100 shadow-sm reveal reveal-delay-2">
+        <div class="text-center mb-4">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:linear-gradient(135deg,#fdf9ee,#fdf3dc);">
+            <svg width="28" height="28" fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <div class="font-amiri text-4xl font-bold mb-1" style="color:#1a4731;">৳1,000</div>
+          <div class="progress-bar my-3"><div class="progress-fill" data-width="62"></div></div>
+          <div class="text-xs mb-1" style="color:#5a7a5a;" data-en="62% funded" data-bn="৬২% অর্থায়িত">62% funded</div>
+        </div>
+        <h3 class="font-semibold text-center mb-2" style="color:#1a4731;" data-en="Monthly Food Support" data-bn="মাসিক খাদ্য সহায়তা">Monthly Food Support</h3>
+        <p class="text-xs text-center mb-5" style="color:#5a7a5a;" data-en="Feed a residential student for a full month so they can focus entirely on Hifz." data-bn="একজন আবাসিক শিক্ষার্থীকে এক মাস খাওয়ান, যেন তারা হিফজে মনোযোগ দিতে পারে।">Feed a residential student for a full month so they can focus entirely on Hifz.</p>
+        <a href="#" onclick="openDonateModal('৳1,000','Monthly Food Support');return false;" class="block text-center py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105" style="background:#c9a84c;color:#0d2b1d;" data-en="Donate ৳1,000" data-bn="৳১,০০০ দান করুন">Donate ৳1,000</a>
+      </div>
+
+      <!-- 2500৳ FEATURED -->
+      <div class="donation-card featured rounded-3xl p-6 shadow-xl reveal reveal-delay-3" style="border:2px solid #c9a84c;background:linear-gradient(135deg,#fff 70%,#fdf9ee 100%);">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+          <span class="px-4 py-1 rounded-full text-xs font-bold text-white" style="background:linear-gradient(90deg,#c9a84c,#e8c96a);color:#0d2b1d;" data-en="Most Impactful" data-bn="সর্বোচ্চ প্রভাবশালী">Most Impactful</span>
+        </div>
+        <div class="text-center mb-4 mt-2">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:linear-gradient(135deg,#1a4731,#2d6a4f);">
+            <svg width="28" height="28" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+          </div>
+          <div class="font-amiri text-4xl font-bold mb-1" style="color:#1a4731;">৳2,500</div>
+          <div class="progress-bar my-3"><div class="progress-fill" data-width="38"></div></div>
+          <div class="text-xs mb-1" style="color:#5a7a5a;" data-en="38% funded" data-bn="৩৮% অর্থায়িত">38% funded</div>
+        </div>
+        <h3 class="font-semibold text-center mb-2" style="color:#1a4731;" data-en="Sponsor a Hifz Student" data-bn="একজন হিফজ শিক্ষার্থীকে স্পনসর করুন">Sponsor a Hifz Student</h3>
+        <p class="text-xs text-center mb-5" style="color:#5a7a5a;" data-en="Sponsor a student's full monthly needs — food, books, boarding — as they memorize the entire Quran." data-bn="একজন শিক্ষার্থীর মাসিক সব প্রয়োজন মেটান — খাবার, বই, আবাসন — যখন তারা পুরো কুরআন মুখস্থ করছে।">Sponsor a student's full monthly needs — food, books, boarding — as they memorize the entire Quran.</p>
+        <a href="#" onclick="openDonateModal('৳2,500','Sponsor a Hifz Student');return false;" class="block text-center py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 hover:scale-105" style="background:linear-gradient(90deg,#1a4731,#2d6a4f);color:#fff;" data-en="Sponsor ৳2,500" data-bn="৳২,৫০০ স্পনসর করুন">Sponsor ৳2,500</a>
+      </div>
+
+      <!-- 5000৳ -->
+      <div class="donation-card rounded-3xl p-6 bg-white border border-gray-100 shadow-sm reveal reveal-delay-4">
+        <div class="text-center mb-4">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:linear-gradient(135deg,#e8eef5,#c8d8e8);">
+            <svg width="28" height="28" fill="none" stroke="#2c5282" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="font-amiri text-4xl font-bold mb-1" style="color:#1a4731;">৳5,000</div>
+          <div class="progress-bar my-3"><div class="progress-fill" data-width="22"></div></div>
+          <div class="text-xs mb-1" style="color:#5a7a5a;" data-en="22% funded" data-bn="২২% অর্থায়িত">22% funded</div>
+        </div>
+        <h3 class="font-semibold text-center mb-2" style="color:#1a4731;" data-en="Teacher Support Fund" data-bn="শিক্ষক সহায়তা তহবিল">Teacher Support Fund</h3>
+        <p class="text-xs text-center mb-5" style="color:#5a7a5a;" data-en="Support a dedicated teacher who works tirelessly to give your children the gift of the Quran." data-bn="একজন নিবেদিত শিক্ষককে সহায়তা করুন যিনি অক্লান্ত পরিশ্রম করেন কুরআনের জ্ঞান দিতে।">Support a dedicated teacher who works tirelessly to give your children the gift of the Quran.</p>
+        <a href="#" onclick="openDonateModal('৳5,000','Teacher Support Fund');return false;" class="block text-center py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105" style="background:#2d6a4f;color:#fff;" data-en="Donate ৳5,000" data-bn="৳৫,০০০ দান করুন">Donate ৳5,000</a>
+      </div>
+    </div>
+
+    <!-- Custom amount CTA -->
+    <div class="text-center reveal">
+      <p class="text-base mb-5" style="color:#5a7a5a;" data-en="Or contribute any amount that you can. Every taka brings a child closer to the Quran." data-bn="অথবা আপনি যা পারেন তাই দিন। প্রতিটি টাকা একটি শিশুকে কুরআনের কাছে নিয়ে যায়।">Or contribute any amount that you can. Every taka brings a child closer to the Quran.</p>
+      <a href="#" onclick="openDonateModal('','Custom Donation');return false;" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl" style="background:linear-gradient(135deg,#c9a84c,#e8c96a);color:#0d2b1d;" data-en="Give a Custom Amount" data-bn="নিজস্ব পরিমাণে দান করুন">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        Give a Custom Amount
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     GALLERY SECTION
+================================================================ -->
+<section id="gallery" class="py-20 lg:py-32" style="background:#fff;" aria-labelledby="gallery-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <p class="section-label mb-3" data-en="Our Community" data-bn="আমাদের সম্প্রদায়">Our Community</p>
+      <h2 id="gallery-heading" class="font-amiri text-4xl lg:text-5xl font-bold mb-5" style="color:#1a4731;" data-en="Life at the Madrasa" data-bn="মাদ্রাসার জীবন">Life at the Madrasa</h2>
+      <div class="gold-divider"></div>
+      <p class="mt-5 text-sm" style="color:#5a7a5a;" data-en="Recent photos from our Facebook page — showing the joy of learning." data-bn="আমাদের ফেসবুক পেজ থেকে সাম্প্রতিক ছবি — শেখার আনন্দের প্রকাশ।">Recent photos from our Facebook page — showing the joy of learning.</p>
+    </div>
+
+    <!-- Masonry-style gallery grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 reveal">
+      <!-- Placeholder tiles: Replace src with real images or FB embed -->
+      <div class="gallery-item rounded-2xl col-span-2 row-span-2" style="height:280px;background:linear-gradient(135deg,#2d6a4f,#1a4731);">
+        <!-- <div class="w-full h-full flex flex-col items-center justify-center text-center p-6">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </div>
+          <p class="text-white font-medium text-sm" data-en="Add your photo here" data-bn="এখানে ছবি যোগ করুন">Add your photo here</p>
+          <p class="text-emerald-200 text-xs mt-1" style="color:rgba(183,228,199,0.7);" data-en="Replace with madrasa image" data-bn="মাদ্রাসার ছবি দিয়ে প্রতিস্থাপন করুন">Replace with madrasa image</p>
+        </div> -->
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0EQ9JYmUEG5uac1WKLmPVMwuougwY2jP8tpbgfL5q3Q6nLmGM8DacVbUfMTb8svitl%26id%3D61559164874338&show_text=true&width=500" width="500" height="511" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <div class="gallery-overlay">
+          <svg width="32" height="32" fill="white" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl" style="height:136px;background:linear-gradient(135deg,#40916c,#52b788);">
+        <div class="w-full h-full flex items-center justify-center">
+          <!-- <p class="text-white text-xs font-medium text-center px-3" data-en="Photo placeholder" data-bn="ছবির স্থান">Photo placeholder</p> -->
+          <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0tJyowHJa41dofjamvssx24L8jDdLdDT5e6uUHA88aLDgyzn6nXqqguK32YybHw8Wl%26id%3D61559164874338&show_text=true&width=500" width="500" height="250" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+        <div class="gallery-overlay">
+          <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2z"/></svg></div>
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:136px;background:linear-gradient(135deg,#c9a84c,#e8c96a);">
+        <div class="w-full h-full flex items-center justify-center">
+          <!-- <p class="text-forest text-xs font-medium text-center px-3" style="color:#0d2b1d;" data-en="Photo placeholder" data-bn="ছবির স্থান">Photo placeholder</p> -->
+          <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F3196875173830792%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+        </div>
+        <!-- <div class="gallery-overlay"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2z"/></svg></div> -->
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:136px;background:linear-gradient(135deg,#1a4731,#40916c);">
+        <div class="w-full h-full flex items-center justify-center">
+          <!-- <p class="text-white text-xs font-medium text-center px-3" data-en="Photo placeholder" data-bn="ছবির স্থান">Photo placeholder</p> -->
+          <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1358011589494688%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+        </div>
+        <!-- <div class="gallery-overlay"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2z"/></svg></div> -->
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:136px;background:linear-gradient(135deg,#52b788,#b7e4c7);">
+        <div class="w-full h-full flex items-center justify-center">
+          <!-- <p class="text-forest text-xs font-medium text-center px-3" style="color:#0d2b1d;" data-en="Photo placeholder" data-bn="ছবির স্থান">Photo placeholder</p> -->
+          <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1463186758442895%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+        </div>
+        <!-- <div class="gallery-overlay"><svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2z"/></svg></div> -->
+      </div>
+    </div>
+
+    <!-- Facebook CTA -->
+    <div class="text-center mt-10 reveal">
+      <a href="https://www.facebook.com/profile.php?id=61559164874338" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:scale-105" style="background:#1877f2;color:#fff;">
+        <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span data-en="View More on Facebook" data-bn="ফেসবুকে আরও দেখুন">View More on Facebook</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CONTACT SECTION
+================================================================ -->
+<section id="contact" class="py-20 lg:py-32" style="background:#faf7f2;" aria-labelledby="contact-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <p class="section-label mb-3" data-en="Get In Touch" data-bn="যোগাযোগ করুন">Get In Touch</p>
+      <h2 id="contact-heading" class="font-amiri text-4xl lg:text-5xl font-bold mb-5" style="color:#1a4731;" data-en="Contact Us" data-bn="আমাদের সাথে যোগাযোগ করুন">Contact Us</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+      <!-- Left: Info cards -->
+      <div class="flex flex-col gap-5 reveal reveal-delay-1">
+        <!-- Phone -->
+        <div class="rounded-2xl p-6 bg-white border border-gray-100 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#e8f5ee;">
+            <svg width="22" height="22" fill="none" stroke="#2d6a4f" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold mb-1" style="color:#1a4731;" data-en="Phone Numbers" data-bn="ফোন নম্বর">Phone Numbers</p>
+            <a href="tel:+8801761342286" class="block text-sm hover:underline transition-colors" style="color:#2d6a4f;">01761-342286</a>
+            <a href="tel:+8801540505902" class="block text-sm hover:underline transition-colors" style="color:#2d6a4f;">01540-505902</a>
+          </div>
+        </div>
+        <!-- Address -->
+        <div class="rounded-2xl p-6 bg-white border border-gray-100 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#fdf9ee;">
+            <svg width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold mb-1" style="color:#1a4731;" data-en="Address" data-bn="ঠিকানা">Address</p>
+            <p class="text-sm leading-relaxed" style="color:#5a7a5a;" data-en="Basantapur, Bagdhani, Paba, Rajshahi, Bangladesh" data-bn="বসন্তপুর, বাগধানী, পবা, রাজশাহী, বাংলাদেশ">Basantapur, Bagdhani, Paba, Rajshahi, Bangladesh</p>
+          </div>
+        </div>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/8801761342286" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 hover:scale-105 hover:shadow-lg" style="background:#25D366;">
+          <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <div>
+            <p class="text-white font-bold" data-en="Chat on WhatsApp" data-bn="হোয়াটসঅ্যাপে কথা বলুন">Chat on WhatsApp</p>
+            <p class="text-green-100 text-sm" data-en="We usually reply within a few hours" data-bn="আমরা সাধারণত কয়েক ঘণ্টার মধ্যে সাড়া দিই">We usually reply within a few hours</p>
+          </div>
+        </a>
+
+        <!-- Map placeholder -->
+        <div class="rounded-2xl overflow-hidden border border-gray-100" style="height:200px;background:linear-gradient(135deg,#e8f5ee,#b7e4c7);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+          <svg width="32" height="32" fill="none" stroke="#2d6a4f" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <p class="text-sm font-medium" style="color:#1a4731;" data-en="Google Map placeholder — embed your map here" data-bn="গুগল ম্যাপ — এখানে আপনার ম্যাপ যোগ করুন">Google Map placeholder — embed your map here</p>
+        </div>
+      </div>
+
+      <!-- Right: Contact form -->
+      <div class="reveal reveal-delay-2">
+        <div class="rounded-3xl p-8 bg-white border border-gray-100 shadow-sm">
+          <h3 class="font-amiri text-2xl font-bold mb-6" style="color:#1a4731;" data-en="Send a Message" data-bn="বার্তা পাঠান">Send a Message</h3>
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="flex flex-col gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-2" style="color:#3a5a3a;" for="contact-name" data-en="Full Name" data-bn="পূর্ণ নাম">Full Name</label>
+                <input id="contact-name" type="text" class="form-input" placeholder="Your name" aria-required="true" data-en-placeholder="Your name" data-bn-placeholder="আপনার নাম" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2" style="color:#3a5a3a;" for="contact-phone" data-en="Phone Number" data-bn="ফোন নম্বর">Phone Number</label>
+                <input id="contact-phone" type="tel" class="form-input" placeholder="01XXXXXXXXX" aria-required="true" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2" style="color:#3a5a3a;" for="contact-msg" data-en="Message" data-bn="বার্তা">Message</label>
+                <textarea id="contact-msg" rows="4" class="form-input resize-none" placeholder="Your message…" aria-required="true" data-en-placeholder="Your message…" data-bn-placeholder="আপনার বার্তা…"></textarea>
+              </div>
+              <button type="submit" class="w-full py-4 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg" style="background:linear-gradient(135deg,#1a4731,#2d6a4f);" data-en="Send Message" data-bn="বার্তা পাঠান">Send Message</button>
+              <div id="form-success" class="hidden text-center py-3 rounded-xl text-sm font-semibold" style="background:#e8f5ee;color:#2d6a4f;" data-en="✓ Message sent! We'll be in touch soon." data-bn="✓ বার্তা পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।">✓ Message sent! We'll be in touch soon.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer role="contentinfo" style="background:linear-gradient(135deg,#0d2b1d 0%,#1a4731 100%);">
+  <!-- Gold top line -->
+  <div style="height:2px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Brand col -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full border-2 flex items-center justify-center" style="border-color:#c9a84c;background:rgba(201,168,76,0.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="font-amiri text-white text-lg font-bold" data-en="Ta'limus Sunnah Hafizia Madrasa" data-bn="তা'লিমুস সুন্নাহ্ হাফিজিয়া মাদ্রাসা">Ta'limus Sunnah Hafizia Madrasa</div>
+            <div class="text-xs" style="color:rgba(183,228,199,0.7);" data-en="Basantapur, Rajshahi, Bangladesh" data-bn="বসন্তপুর, রাজশাহী, বাংলাদেশ">Basantapur, Rajshahi, Bangladesh</div>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-6" style="color:rgba(183,228,199,0.7);" data-en="Nurturing the next generation of Quran bearers through authentic Islamic education. Established 2023 under Noorani Ta'limul Quran Board, Chittagong." data-bn="নুরানী তা'লিমুল কুরআন বোর্ড, চট্টগ্রামের অধীনে ২০২৩ সালে প্রতিষ্ঠিত — খাঁটি ইসলামী শিক্ষার মাধ্যমে ভবিষ্যতের কুরআনের হাফিজ তৈরি করছি।">Nurturing the next generation of Quran bearers through authentic Islamic education. Established 2023 under Noorani Ta'limul Quran Board, Chittagong.</p>
+        <a href="#donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm hover:scale-105 transition-transform" style="background:linear-gradient(90deg,#c9a84c,#e8c96a);color:#0d2b1d;" data-en="Donate Now" data-bn="এখনই দান করুন">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          Donate Now
+        </a>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-white font-semibold mb-5" data-en="Quick Links" data-bn="দ্রুত লিঙ্ক">Quick Links</h3>
+        <ul class="flex flex-col gap-3">
+          <li><a href="#about" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="About Us" data-bn="আমাদের সম্পর্কে">About Us</a></li>
+          <li><a href="#departments" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="Departments" data-bn="বিভাগ">Departments</a></li>
+          <li><a href="#donate" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="Donate" data-bn="দান করুন">Donate</a></li>
+          <li><a href="#gallery" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="Gallery" data-bn="গ্যালারি">Gallery</a></li>
+          <li><a href="#contact" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="Contact" data-bn="যোগাযোগ">Contact</a></li>
+          <li><a href="#RESULT_URL" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);" data-en="Results" data-bn="ফলাফল">Results</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact info -->
+      <div>
+        <h3 class="text-white font-semibold mb-5" data-en="Contact Info" data-bn="যোগাযোগের তথ্য">Contact Info</h3>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-center gap-2">
+            <svg width="14" height="14" fill="none" stroke="rgba(183,228,199,0.7)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:+8801761342286" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);">01761-342286</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="14" height="14" fill="none" stroke="rgba(183,228,199,0.7)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:+8801540505902" class="text-sm hover:text-white transition-colors" style="color:rgba(183,228,199,0.7);">01540-505902</a>
+          </li>
+          <li class="flex items-start gap-2 mt-1">
+            <svg width="14" height="14" fill="none" stroke="rgba(183,228,199,0.7)" stroke-width="2" viewBox="0 0 24 24" class="mt-0.5 flex-shrink-0"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-sm leading-relaxed" style="color:rgba(183,228,199,0.7);" data-en="Basantapur, Bagdhani, Paba, Rajshahi" data-bn="বসন্তপুর, বাগধানী, পবা, রাজশাহী">Basantapur, Bagdhani, Paba, Rajshahi</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4" style="border-color:rgba(255,255,255,0.1);">
+      <p class="text-xs" style="color:rgba(183,228,199,0.5);" data-en="© 2024 Ta'limus Sunnah Hafizia Madrasa. All rights reserved." data-bn="© ২০২৪ তা'লিমুস সুন্নাহ্ হাফিজিয়া মাদ্রাসা। সর্বস্বত্ব সংরক্ষিত।">© 2024 Ta'limus Sunnah Hafizia Madrasa. All rights reserved.</p>
+      <p class="font-amiri text-sm" style="color:rgba(201,168,76,0.6);">مدرسة تعليم السنة الحافظية</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+  /* ============================================================
+     TRANSLATIONS
+  ============================================================ */
+  const translations = {
+    en: { langLabel: 'বাংলা', langMobile: 'Switch to বাংলা' },
+    bn: { langLabel: 'English', langMobile: 'Switch to English' }
+  };
+
+  let currentLang = localStorage.getItem('madrasa-lang') || 'en';
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('madrasa-lang', lang);
+
+    // Switch body font
+    document.body.classList.toggle('lang-bn', lang === 'bn');
+
+    // Update all data-en / data-bn elements
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.textContent = text;
+    });
+
+    // Update placeholder texts
+    document.querySelectorAll('[data-' + lang + '-placeholder]').forEach(el => {
+      el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
+    });
+
+    // Toggle buttons
+    const dtBtn = document.getElementById('lang-toggle-desktop');
+    const mbBtn = document.getElementById('lang-toggle-mobile');
+    if (dtBtn) dtBtn.textContent = translations[lang].langLabel;
+    if (mbBtn) mbBtn.textContent = translations[lang].langMobile;
+
+    // Header lang button style refresh
+    const header = document.getElementById('main-header');
+    updateLangButtonStyle(header.classList.contains('solid'));
+  }
+
+  function toggleLanguage() {
+    applyLanguage(currentLang === 'en' ? 'bn' : 'en');
+  }
+
+  /* ============================================================
+     STICKY HEADER
+  ============================================================ */
+  const header = document.getElementById('main-header');
+  const hamIcon = document.getElementById('ham-icon');
+
+  function updateHeaderStyle() {
+    const scrolled = window.scrollY > 40;
+    header.classList.toggle('solid', scrolled);
+    header.classList.toggle('transparent', !scrolled);
+    // Keep hamburger icon readable
+    hamIcon.setAttribute('stroke', scrolled ? '#1a4731' : '#ffffff');
+    updateLangButtonStyle(scrolled);
+  }
+
+  function updateLangButtonStyle(solid) {
+    const dtBtn = document.getElementById('lang-toggle-desktop');
+    if (!dtBtn) return;
+    if (solid) {
+      dtBtn.style.color = '#1a4731';
+      dtBtn.style.borderColor = '#1a4731';
+      dtBtn.style.background = 'transparent';
+    } else {
+      dtBtn.style.color = 'white';
+      dtBtn.style.borderColor = 'rgba(255,255,255,0.6)';
+      dtBtn.style.background = 'transparent';
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderStyle, { passive: true });
+  updateHeaderStyle();
+
+  /* ============================================================
+     MOBILE MENU
+  ============================================================ */
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger');
+  let menuOpen = false;
+
+  function toggleMobileMenu() {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen.toString());
+    // Lock body scroll when menu open
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  /* ============================================================
+     SCROLL REVEAL
+  ============================================================ */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ============================================================
+     COUNTER ANIMATION
+  ============================================================ */
+  function animateCounter(el, target, duration) {
+    let start = 0;
+    const isYear = target > 2000;
+    const startVal = isYear ? 2000 : 0;
+    start = startVal;
+    const range = target - startVal;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(startVal + range * eased);
+      el.textContent = current.toLocaleString();
+      if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        animateCounter(el, target, 1800);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  /* ============================================================
+     PROGRESS BARS
+  ============================================================ */
+  const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.getAttribute('data-width');
+        setTimeout(() => { fill.style.width = width + '%'; }, 200);
+        progressObserver.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.progress-fill').forEach(el => progressObserver.observe(el));
+
+  /* ============================================================
+     CONTACT FORM
+  ============================================================ */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const success = document.getElementById('form-success');
+    success.classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => success.classList.add('hidden'), 5000);
+  }
+
+  /* ============================================================
+     INIT LANGUAGE
+  ============================================================ */
+  applyLanguage(currentLang);
+</script>
+
+
+<!-- ================================================================
+     PAYMENT MODAL
+================================================================ -->
+<div id="donate-modal" aria-modal="true" role="dialog" aria-label="Donation Payment" style="
+  display:none;
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(10,30,20,0.72);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+  padding:16px;
+  overflow-y:auto;
+">
+  <!-- Modal box -->
+  <div id="donate-modal-box" style="
+    background:#fff;
+    border-radius:28px;
+    width:100%;max-width:520px;
+    margin:auto;
+    overflow:hidden;
+    box-shadow:0 32px 80px rgba(0,0,0,0.25);
+    position:relative;
+    transform:scale(0.94);opacity:0;
+    transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),opacity 0.3s ease;
+  ">
+
+    <!-- Header bar -->
+    <div style="background:linear-gradient(135deg,#0d2b1d,#1a4731);padding:24px 28px 20px;position:relative;">
+      <button onclick="closeDonateModal()" aria-label="Close" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <p style="color:rgba(183,228,199,0.8);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;">Sadaqah Jariyah</p>
+      <h2 style="color:#fff;font-family:'Amiri',serif;font-size:24px;font-weight:700;margin:0 0 4px;" id="modal-title">Donate Now</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:13px;margin:0;" id="modal-cause">Supporting Quran education</p>
+      <!-- Amount badge -->
+      <div id="modal-amount-badge" style="display:inline-block;margin-top:12px;background:linear-gradient(90deg,#c9a84c,#e8c96a);color:#0d2b1d;font-weight:700;font-size:18px;padding:6px 18px;border-radius:99px;font-family:'Amiri',serif;"></div>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:24px 24px 28px;">
+
+      <!-- Custom amount row -->
+      <div id="custom-amount-row" style="margin-bottom:20px;display:none;">
+        <label style="display:block;font-size:13px;font-weight:600;color:#1a4731;margin-bottom:8px;">Enter Amount (৳)</label>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input id="custom-amount-input" type="number" min="10" placeholder="e.g. 500" style="flex:1;padding:12px 16px;border:1.5px solid #d4c9b0;border-radius:12px;font-size:16px;color:#1a2e1a;outline:none;font-family:inherit;" oninput="updateCustomAmount(this.value)" />
+          <span style="font-size:22px;font-weight:700;color:#1a4731;font-family:'Amiri',serif;" id="custom-display">৳—</span>
+        </div>
+        <!-- Quick pick amounts -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <button onclick="setQuickAmount(200)" style="padding:6px 14px;border-radius:99px;border:1.5px solid #2d6a4f;color:#1a4731;background:transparent;cursor:pointer;font-size:13px;font-weight:600;">৳200</button>
+          <button onclick="setQuickAmount(500)" style="padding:6px 14px;border-radius:99px;border:1.5px solid #2d6a4f;color:#1a4731;background:transparent;cursor:pointer;font-size:13px;font-weight:600;">৳500</button>
+          <button onclick="setQuickAmount(1000)" style="padding:6px 14px;border-radius:99px;border:1.5px solid #2d6a4f;color:#1a4731;background:transparent;cursor:pointer;font-size:13px;font-weight:600;">৳1,000</button>
+          <button onclick="setQuickAmount(2500)" style="padding:6px 14px;border-radius:99px;border:1.5px solid #c9a84c;color:#c9a84c;background:transparent;cursor:pointer;font-size:13px;font-weight:600;">৳2,500</button>
+          <button onclick="setQuickAmount(5000)" style="padding:6px 14px;border-radius:99px;border:1.5px solid #c9a84c;color:#c9a84c;background:transparent;cursor:pointer;font-size:13px;font-weight:600;">৳5,000</button>
+        </div>
+      </div>
+
+      <!-- Step 1: Choose payment method -->
+      <div id="step-method">
+        <p style="font-size:13px;font-weight:700;color:#5a7a5a;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;">Choose Payment Method</p>
+
+        <!-- bKash -->
+        <button onclick="selectMethod('bkash')" class="pay-method-btn" style="width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:2px solid #e5e7eb;background:#fff;cursor:pointer;margin-bottom:10px;transition:all 0.2s;text-align:left;">
+          <div style="width:48px;height:48px;border-radius:12px;background:#E2136E;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#E2136E"/><text x="20" y="26" text-anchor="middle" font-size="13" font-weight="900" fill="white" font-family="Arial">bKash</text></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:15px;color:#1a2e1a;">bKash</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:1px;">Send Money / Payment</div>
+          </div>
+          <div style="width:20px;height:20px;border-radius:50%;border:2px solid #e5e7eb;background:#fff;" id="radio-bkash"></div>
+        </button>
+
+        <!-- Nagad -->
+        <button onclick="selectMethod('nagad')" class="pay-method-btn" style="width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:2px solid #e5e7eb;background:#fff;cursor:pointer;margin-bottom:10px;transition:all 0.2s;text-align:left;">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#F7941D,#EF4135);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><text x="20" y="26" text-anchor="middle" font-size="11" font-weight="900" fill="white" font-family="Arial">Nagad</text></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:15px;color:#1a2e1a;">Nagad</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:1px;">Mobile Financial Service</div>
+          </div>
+          <div style="width:20px;height:20px;border-radius:50%;border:2px solid #e5e7eb;background:#fff;" id="radio-nagad"></div>
+        </button>
+
+        <!-- Rocket -->
+        <button onclick="selectMethod('rocket')" class="pay-method-btn" style="width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:2px solid #e5e7eb;background:#fff;cursor:pointer;margin-bottom:10px;transition:all 0.2s;text-align:left;">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#8B2FC9,#6A1FA3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><text x="20" y="26" text-anchor="middle" font-size="10" font-weight="900" fill="white" font-family="Arial">Rocket</text></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:15px;color:#1a2e1a;">Rocket (DBBL)</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:1px;">Dutch-Bangla Mobile Banking</div>
+          </div>
+          <div style="width:20px;height:20px;border-radius:50%;border:2px solid #e5e7eb;background:#fff;" id="radio-rocket"></div>
+        </button>
+
+        <!-- Bank Transfer -->
+        <button onclick="selectMethod('bank')" class="pay-method-btn" style="width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:2px solid #e5e7eb;background:#fff;cursor:pointer;margin-bottom:10px;transition:all 0.2s;text-align:left;">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#1a4731,#2d6a4f);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:15px;color:#1a2e1a;">Bank Transfer</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:1px;">Direct bank account transfer</div>
+          </div>
+          <div style="width:20px;height:20px;border-radius:50%;border:2px solid #e5e7eb;background:#fff;" id="radio-bank"></div>
+        </button>
+
+        <button onclick="proceedToDetails()" id="btn-proceed" style="width:100%;padding:15px;border-radius:16px;background:linear-gradient(135deg,#1a4731,#2d6a4f);color:#fff;font-weight:700;font-size:15px;border:none;cursor:pointer;margin-top:6px;opacity:0.4;pointer-events:none;transition:all 0.2s;">
+          Continue →
+        </button>
+      </div>
+
+      <!-- Step 2: Payment details + QR -->
+      <div id="step-details" style="display:none;">
+        <button onclick="backToMethod()" style="display:flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;color:#2d6a4f;font-weight:600;font-size:13px;margin-bottom:18px;padding:0;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+
+        <!-- Method badge -->
+        <div id="method-badge" style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;margin-bottom:20px;background:#f0faf4;"></div>
+
+        <!-- Tabs: Instructions | QR Code -->
+        <div style="display:flex;gap:0;border-radius:12px;overflow:hidden;border:1.5px solid #e5e7eb;margin-bottom:20px;">
+          <button id="tab-instructions" onclick="switchTab('instructions')" style="flex:1;padding:10px;font-weight:700;font-size:13px;border:none;cursor:pointer;background:#1a4731;color:#fff;transition:all 0.2s;">📋 Instructions</button>
+          <button id="tab-qr" onclick="switchTab('qr')" style="flex:1;padding:10px;font-weight:700;font-size:13px;border:none;cursor:pointer;background:#f9f9f9;color:#5a7a5a;transition:all 0.2s;">📷 QR Code</button>
+        </div>
+
+        <!-- Instructions panel -->
+        <div id="panel-instructions">
+          <div id="instructions-content" style="background:#f0faf4;border-radius:16px;padding:18px;font-size:14px;line-height:1.7;color:#1a2e1a;"></div>
+          <!-- Copy number button -->
+          <div id="copy-section" style="margin-top:14px;display:flex;align-items:center;gap:10px;">
+            <div id="number-display" style="flex:1;background:#fff;border:1.5px solid #b7e4c7;border-radius:12px;padding:12px 16px;font-size:18px;font-weight:700;color:#1a4731;letter-spacing:.05em;font-family:'Amiri',serif;"></div>
+            <button onclick="copyNumber()" id="copy-btn" style="padding:12px 16px;border-radius:12px;background:#2d6a4f;color:#fff;font-weight:700;font-size:13px;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;">Copy</button>
+          </div>
+        </div>
+
+        <!-- QR panel -->
+        <div id="panel-qr" style="display:none;text-align:center;">
+          <p style="font-size:13px;color:#5a7a5a;margin-bottom:14px;">Scan with your mobile payment app</p>
+          <div id="qr-container" style="display:inline-block;padding:16px;background:#fff;border-radius:20px;border:2px solid #e5e7eb;box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+            <!-- QR SVG injected here -->
+          </div>
+          <p style="font-size:11px;color:#9ca3af;margin-top:12px;">⚠️ Replace this QR with your official payment QR image</p>
+        </div>
+
+        <!-- Confirmation note -->
+        <div style="margin-top:18px;padding:14px 16px;background:#fdf9ee;border-radius:14px;border-left:4px solid #c9a84c;">
+          <p style="font-size:12px;color:#92400e;margin:0;line-height:1.6;">
+            <strong>After donating:</strong> Please send a screenshot to our WhatsApp
+            <a href="https://wa.me/8801761342286" style="color:#2d6a4f;font-weight:700;">01761-342286</a>
+            for confirmation. JazakAllahu Khayran! 🤲
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAYMENT MODAL STYLES
+================================================================ -->
+<style>
+  #donate-modal { display:none; }
+  #donate-modal.active {
+    display:flex !important;
+    animation: modalFadeIn 0.2s ease;
+  }
+  #donate-modal.active #donate-modal-box {
+    transform:scale(1) !important;
+    opacity:1 !important;
+  }
+  @keyframes modalFadeIn { from{opacity:0} to{opacity:1} }
+
+  .pay-method-btn:hover {
+    border-color:#2d6a4f !important;
+    background:#f0faf4 !important;
+  }
+  .pay-method-btn.selected {
+    border-color:#2d6a4f !important;
+    background:#f0faf4 !important;
+  }
+</style>
+
+<!-- ================================================================
+     PAYMENT MODAL JAVASCRIPT
+================================================================ -->
+<script>
+/* ── Payment data (replace numbers/QR with real ones) ── */
+const PAYMENT_DATA = {
+  bkash: {
+    label: 'bKash',
+    color: '#E2136E',
+    number: '01761-342286',   // ← Replace with your bKash merchant/personal number
+    type: 'Personal / Send Money',
+    steps: [
+      'Open your <strong>bKash app</strong>',
+      'Tap <strong>"Send Money"</strong>',
+      'Enter number: <strong>01761-342286</strong>',
+      'Enter your donation amount',
+      'Add reference: <strong>Madrasa Donation</strong>',
+      'Confirm with your bKash PIN'
+    ]
+  },
+  nagad: {
+    label: 'Nagad',
+    color: '#F7941D',
+    number: '01761-342286',   // ← Replace with your Nagad number
+    type: 'Send Money',
+    steps: [
+      'Open your <strong>Nagad app</strong>',
+      'Tap <strong>"Send Money"</strong>',
+      'Enter number: <strong>01761-342286</strong>',
+      'Enter your donation amount',
+      'Add reference: <strong>Madrasa Donation</strong>',
+      'Confirm with your Nagad PIN'
+    ]
+  },
+  rocket: {
+    label: 'Rocket (DBBL)',
+    color: '#8B2FC9',
+    number: '017613-42286',   // ← Replace with your Rocket number (11 digits + 1)
+    type: 'Send Money',
+    steps: [
+      'Open your <strong>Rocket app</strong> or dial <strong>*322#</strong>',
+      'Select <strong>"Send Money"</strong>',
+      'Enter number: <strong>017613-42286</strong>',
+      'Enter your donation amount',
+      'Add reference: <strong>Madrasa</strong>',
+      'Confirm with your Rocket PIN'
+    ]
+  },
+  bank: {
+    label: 'Bank Transfer',
+    color: '#1a4731',
+    number: 'Acc: 0000-0000000-000',  // ← Replace with real account
+    type: 'BEFTN / NPSB',
+    steps: [
+      '<strong>Bank:</strong> [Your Bank Name]',
+      '<strong>Account Name:</strong> Ta\'limus Sunnah Hafizia Madrasa',
+      '<strong>Account No:</strong> 0000-0000000-000',
+      '<strong>Branch:</strong> [Branch Name], Rajshahi',
+      '<strong>Routing No:</strong> 000000000',
+      'After transfer, WhatsApp the receipt to <strong>01761-342286</strong>'
+    ]
+  }
+};
+
+/* ── QR placeholder generator (SVG-based, no library needed) ── */
+/* Replace the SVG src with your actual QR code image per method */
+function generateQRPlaceholder(method) {
+  const d = PAYMENT_DATA[method];
+  const color = d.color;
+  // Simple decorative QR placeholder — replace with <img src="bkash-qr.png"> in production
+  return `<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+    <rect width="180" height="180" fill="#fff" rx="12"/>
+    <!-- Corner squares -->
+    <rect x="10" y="10" width="50" height="50" rx="6" fill="none" stroke="${color}" stroke-width="5"/>
+    <rect x="20" y="20" width="30" height="30" rx="3" fill="${color}"/>
+    <rect x="120" y="10" width="50" height="50" rx="6" fill="none" stroke="${color}" stroke-width="5"/>
+    <rect x="130" y="20" width="30" height="30" rx="3" fill="${color}"/>
+    <rect x="10" y="120" width="50" height="50" rx="6" fill="none" stroke="${color}" stroke-width="5"/>
+    <rect x="20" y="130" width="30" height="30" rx="3" fill="${color}"/>
+    <!-- Data dots (decorative) -->
+    <g fill="${color}" opacity="0.85">
+      <rect x="74" y="10" width="8" height="8" rx="2"/><rect x="86" y="10" width="8" height="8" rx="2"/>
+      <rect x="74" y="22" width="8" height="8" rx="2"/><rect x="98" y="22" width="8" height="8" rx="2"/>
+      <rect x="74" y="34" width="8" height="8" rx="2"/><rect x="86" y="34" width="8" height="8" rx="2"/><rect x="98" y="34" width="8" height="8" rx="2"/>
+      <rect x="74" y="46" width="8" height="8" rx="2"/>
+      <rect x="10" y="74" width="8" height="8" rx="2"/><rect x="22" y="74" width="8" height="8" rx="2"/><rect x="34" y="74" width="8" height="8" rx="2"/>
+      <rect x="10" y="86" width="8" height="8" rx="2"/><rect x="34" y="86" width="8" height="8" rx="2"/>
+      <rect x="10" y="98" width="8" height="8" rx="2"/><rect x="22" y="98" width="8" height="8" rx="2"/>
+      <rect x="74" y="74" width="8" height="8" rx="2"/><rect x="86" y="74" width="8" height="8" rx="2"/><rect x="110" y="74" width="8" height="8" rx="2"/>
+      <rect x="74" y="86" width="8" height="8" rx="2"/><rect x="98" y="86" width="8" height="8" rx="2"/><rect x="122" y="86" width="8" height="8" rx="2"/>
+      <rect x="86" y="98" width="8" height="8" rx="2"/><rect x="110" y="98" width="8" height="8" rx="2"/>
+      <rect x="74" y="110" width="8" height="8" rx="2"/><rect x="86" y="110" width="8" height="8" rx="2"/><rect x="98" y="110" width="8" height="8" rx="2"/>
+      <rect x="122" y="110" width="8" height="8" rx="2"/>
+      <rect x="74" y="122" width="8" height="8" rx="2"/><rect x="98" y="122" width="8" height="8" rx="2"/><rect x="134" y="122" width="8" height="8" rx="2"/>
+      <rect x="74" y="134" width="8" height="8" rx="2"/><rect x="86" y="134" width="8" height="8" rx="2"/><rect x="110" y="134" width="8" height="8" rx="2"/>
+      <rect x="74" y="146" width="8" height="8" rx="2"/><rect x="98" y="146" width="8" height="8" rx="2"/><rect x="122" y="146" width="8" height="8" rx="2"/>
+      <rect x="134" y="134" width="8" height="8" rx="2"/><rect x="146" y="146" width="8" height="8" rx="2"/>
+      <rect x="134" y="74" width="8" height="8" rx="2"/><rect x="146" y="74" width="8" height="8" rx="2"/><rect x="158" y="74" width="8" height="8" rx="2"/>
+      <rect x="146" y="86" width="8" height="8" rx="2"/><rect x="158" y="98" width="8" height="8" rx="2"/>
+      <rect x="134" y="98" width="8" height="8" rx="2"/><rect x="146" y="110" width="8" height="8" rx="2"/>
+      <rect x="158" y="110" width="8" height="8" rx="2"/><rect x="134" y="146" width="8" height="8" rx="2"/>
+      <rect x="146" y="158" width="8" height="8" rx="2"/><rect x="158" y="158" width="8" height="8" rx="2"/>
+    </g>
+    <!-- Center logo -->
+    <rect x="78" y="78" width="24" height="24" rx="6" fill="${color}"/>
+    <text x="90" y="94" text-anchor="middle" font-size="9" font-weight="900" fill="white" font-family="Arial">QR</text>
+  </svg>`;
+}
+
+/* ── State ── */
+let selectedMethod = null;
+let currentAmount = '';
+let currentCause = '';
+let currentTab = 'instructions';
+
+/* ── Open / Close ── */
+function openDonateModal(amount, cause) {
+  currentAmount = amount;
+  currentCause = cause;
+  selectedMethod = null;
+  currentTab = 'instructions';
+
+  // Reset UI
+  document.getElementById('modal-title').textContent = cause || 'Donate Now';
+  document.getElementById('modal-cause').textContent = 'Supporting Quran education at Ta\'limus Sunnah';
+  const badge = document.getElementById('modal-amount-badge');
+  if (amount) {
+    badge.style.display = 'inline-block';
+    badge.textContent = amount;
+  } else {
+    badge.style.display = 'none';
+  }
+
+  // Show/hide custom amount row
+  const customRow = document.getElementById('custom-amount-row');
+  const isCustom = !amount || cause === 'Custom Donation';
+  customRow.style.display = isCustom ? 'block' : 'none';
+  if (isCustom) {
+    document.getElementById('custom-amount-input').value = '';
+    document.getElementById('custom-display').textContent = '৳—';
+  }
+
+  // Reset method selection
+  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
+  ['bkash','nagad','rocket','bank'].forEach(m => {
+    const r = document.getElementById('radio-'+m);
+    if(r) { r.style.background='#fff'; r.style.borderColor='#e5e7eb'; }
+  });
+  document.getElementById('btn-proceed').style.opacity = '0.4';
+  document.getElementById('btn-proceed').style.pointerEvents = 'none';
+
+  // Show step 1
+  document.getElementById('step-method').style.display = 'block';
+  document.getElementById('step-details').style.display = 'none';
+
+  // Show modal
+  const modal = document.getElementById('donate-modal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // Animate box in
+  setTimeout(() => {
+    document.getElementById('donate-modal-box').style.transform = 'scale(1)';
+    document.getElementById('donate-modal-box').style.opacity = '1';
+  }, 10);
+}
+
+function closeDonateModal() {
+  const modal = document.getElementById('donate-modal');
+  const box = document.getElementById('donate-modal-box');
+  box.style.transform = 'scale(0.94)';
+  box.style.opacity = '0';
+  setTimeout(() => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }, 280);
+}
+
+/* Close on backdrop click */
+document.getElementById('donate-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeDonateModal();
+});
+
+/* ── Custom amount ── */
+function updateCustomAmount(val) {
+  const n = parseInt(val);
+  document.getElementById('custom-display').textContent = n > 0 ? '৳' + n.toLocaleString() : '৳—';
+}
+function setQuickAmount(n) {
+  document.getElementById('custom-amount-input').value = n;
+  updateCustomAmount(n);
+}
+
+/* ── Method selection ── */
+function selectMethod(method) {
+  selectedMethod = method;
+  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+
+  ['bkash','nagad','rocket','bank'].forEach(m => {
+    const r = document.getElementById('radio-'+m);
+    if (r) {
+      r.style.background = m === method ? '#2d6a4f' : '#fff';
+      r.style.borderColor = m === method ? '#2d6a4f' : '#e5e7eb';
+    }
+  });
+
+  const btn = document.getElementById('btn-proceed');
+  btn.style.opacity = '1';
+  btn.style.pointerEvents = 'auto';
+}
+
+/* ── Proceed to details ── */
+function proceedToDetails() {
+  if (!selectedMethod) return;
+  const d = PAYMENT_DATA[selectedMethod];
+
+  // Build badge
+  document.getElementById('method-badge').innerHTML = `
+    <div style="width:36px;height:36px;border-radius:10px;background:${d.color};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </div>
+    <div>
+      <div style="font-weight:700;color:#1a4731;">${d.label}</div>
+      <div style="font-size:12px;color:#6b7280;">${d.type}</div>
+    </div>
+  `;
+
+  // Build instructions
+  const steps = d.steps.map((s,i) => `
+    <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">
+      <div style="width:22px;height:22px;border-radius:50%;background:${d.color};color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">${i+1}</div>
+      <div>${s}</div>
+    </div>
+  `).join('');
+  document.getElementById('instructions-content').innerHTML = steps;
+
+  // Set number
+  document.getElementById('number-display').textContent = d.number;
+
+  // Hide copy section for bank (show full details instead)
+  document.getElementById('copy-section').style.display = selectedMethod === 'bank' ? 'none' : 'flex';
+
+  // QR
+  document.getElementById('qr-container').innerHTML = generateQRPlaceholder(selectedMethod);
+
+  // Switch to tab
+  switchTab('instructions');
+
+  // Switch steps
+  document.getElementById('step-method').style.display = 'none';
+  document.getElementById('step-details').style.display = 'block';
+}
+
+/* ── Back ── */
+function backToMethod() {
+  document.getElementById('step-method').style.display = 'block';
+  document.getElementById('step-details').style.display = 'none';
+}
+
+/* ── Tab switcher ── */
+function switchTab(tab) {
+  currentTab = tab;
+  const iInstr = tab === 'instructions';
+  document.getElementById('panel-instructions').style.display = iInstr ? 'block' : 'none';
+  document.getElementById('panel-qr').style.display = iInstr ? 'none' : 'block';
+  document.getElementById('tab-instructions').style.background = iInstr ? '#1a4731' : '#f9f9f9';
+  document.getElementById('tab-instructions').style.color = iInstr ? '#fff' : '#5a7a5a';
+  document.getElementById('tab-qr').style.background = iInstr ? '#f9f9f9' : '#1a4731';
+  document.getElementById('tab-qr').style.color = iInstr ? '#5a7a5a' : '#fff';
+}
+
+/* ── Copy number ── */
+function copyNumber() {
+  const num = document.getElementById('number-display').textContent;
+  navigator.clipboard.writeText(num.replace(/[^0-9]/g, '')).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.style.background = '#c9a84c';
+    setTimeout(() => { btn.textContent = 'Copy'; btn.style.background = '#2d6a4f'; }, 2000);
+  }).catch(() => {
+    // Fallback
+    const el = document.createElement('textarea');
+    el.value = num;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
+/* Close on Escape key */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDonateModal(); });
+</script>
+
+</body>
+</html>
