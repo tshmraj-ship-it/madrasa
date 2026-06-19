@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Talimus Sunnah Hafizia Madrasha — MMS</title>
+<style>
+:root {
+  --green-dark:  #0d4f31;
+  --green-main:  #1a6b45;
+  --green-mid:   #2d8a5e;
+  --green-light: #e8f5ee;
+  --green-pale:  #f3faf6;
+  --gold:        #c9a84c;
+  --gold-light:  #f5e9c5;
+  --white:       #ffffff;
+  --gray-50:     #f9fafb;
+  --gray-100:    #f3f4f6;
+  --gray-200:    #e5e7eb;
+  --gray-400:    #9ca3af;
+  --gray-600:    #4b5563;
+  --gray-800:    #1f2937;
+  --red:         #dc2626;
+  --red-light:   #fee2e2;
+  --radius:      12px;
+  --radius-sm:   8px;
+  --shadow:      0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hind Siliguri', 'Segoe UI', sans-serif; background: var(--green-pale); color: var(--gray-800); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+/* LOGIN */
+#login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 16px; background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-main) 50%, var(--green-mid) 100%); }
+.login-card { background: var(--white); border-radius: 20px; padding: 40px 32px; width: 100%; max-width: 380px; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+.login-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--green-main), var(--gold)); }
+.login-brand { text-align: center; margin-bottom: 32px; }
+.login-logo { width: 72px; height: 72px; background: var(--green-main); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.login-title { font-size: 18px; font-weight: 700; color: var(--green-dark); line-height: 1.3; }
+.login-subtitle { font-size: 13px; color: var(--gray-400); margin-top: 4px; }
+.lang-toggle { display: flex; justify-content: flex-end; margin-bottom: 8px; gap: 6px; }
+.lang-btn { background: var(--gray-100); border: 1px solid var(--gray-200); color: var(--gray-600); padding: 4px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; font-family: inherit; }
+.lang-btn.active { background: var(--green-main); color: white; border-color: var(--green-main); }
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+.form-input { width: 100%; padding: 14px 16px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-size: 16px; font-family: inherit; color: var(--gray-800); background: var(--gray-50); transition: border-color 0.2s; -webkit-appearance: none; }
+.form-input:focus { outline: none; border-color: var(--green-main); background: var(--white); }
+.error-msg { background: var(--red-light); color: var(--red); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 16px; display: none; }
+.error-msg.show { display: block; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; font-family: inherit; border: none; cursor: pointer; transition: background 0.2s; text-decoration: none; min-height: 48px; -webkit-tap-highlight-color: transparent; width: 100%; }
+.btn-primary { background: var(--green-main); color: var(--white); }
+.btn-primary:active { background: var(--green-dark); }
+.btn-secondary { background: var(--gray-100); color: var(--gray-800); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-outline { background: transparent; border: 2px solid var(--green-main); color: var(--green-main); }
+.btn-sm { padding: 8px 14px; font-size: 13px; min-height: 36px; width: auto; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* APP */
+#app { display: none; }
+#app.visible { display: block; }
+
+/* NAV */
+.top-nav { background: linear-gradient(135deg, var(--green-dark), var(--green-main)); color: white; padding: 0 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; max-width: 1200px; margin: 0 auto; }
+.nav-brand { font-size: 15px; font-weight: 700; color: white; flex: 1; line-height: 1.2; overflow: hidden; }
+.nav-brand small { display: block; font-size: 11px; opacity: 0.8; font-weight: 400; }
+.nav-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.nav-user-badge { background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; font-size: 12px; white-space: nowrap; }
+.nav-logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer; font-family: inherit; }
+.nav-lang { background: var(--gold); border: none; color: white; padding: 6px 10px; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer; font-family: inherit; font-weight: 600; }
+
+/* BOTTOM NAV */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; border-top: 1px solid var(--gray-200); z-index: 100; box-shadow: 0 -2px 12px rgba(0,0,0,0.08); padding-bottom: env(safe-area-inset-bottom); }
+.tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 8px 2px; cursor: pointer; color: var(--gray-400); font-size: 10px; border: none; background: none; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.tab-item.active { color: var(--green-main); }
+.tab-icon { font-size: 22px; margin-bottom: 2px; line-height: 1; }
+
+/* LAYOUT */
+.desktop-layout { max-width: 1200px; margin: 0 auto; }
+.page-content { padding: 16px 16px 84px; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* CARDS */
+.card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 8px; }
+.card-title { font-size: 16px; font-weight: 700; color: var(--green-dark); display: flex; align-items: center; gap: 6px; }
+.page-title { font-size: 20px; font-weight: 700; color: var(--green-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.stat-card { background: white; border-radius: var(--radius); padding: 16px; text-align: center; box-shadow: var(--shadow); border-top: 3px solid var(--green-main); }
+.stat-card:nth-child(2) { border-top-color: var(--gold); }
+.stat-card:nth-child(3) { border-top-color: #3b82f6; }
+.stat-card:nth-child(4) { border-top-color: var(--red); }
+.stat-value { font-size: 32px; font-weight: 700; color: var(--green-dark); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 12px; color: var(--gray-400); }
+
+/* FILTER BAR */
+.filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter-bar input, .filter-bar select { flex: 1; min-width: 100px; padding: 10px 12px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-size: 14px; font-family: inherit; background: white; color: var(--gray-800); -webkit-appearance: none; }
+.filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--green-main); }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th { background: var(--green-light); color: var(--green-dark); font-weight: 700; padding: 10px 12px; text-align: left; white-space: nowrap; font-size: 12px; }
+tbody tr { border-bottom: 1px solid var(--gray-100); }
+tbody tr:hover { background: var(--green-pale); }
+tbody td { padding: 12px; vertical-align: middle; }
+.loading-cell { text-align: center; padding: 30px; color: var(--gray-400); }
+
+/* BADGES */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.badge-green { background: var(--green-light); color: var(--green-dark); }
+.badge-red   { background: var(--red-light); color: var(--red); }
+.badge-gold  { background: var(--gold-light); color: #7c5a00; }
+.badge-gray  { background: var(--gray-100); color: var(--gray-600); }
+.badge-blue  { background: #dbeafe; color: #1d4ed8; }
+.rating-excellent { color: #15803d; font-weight: 700; }
+.rating-good      { color: #2563eb; font-weight: 700; }
+.rating-average   { color: #d97706; font-weight: 700; }
+.rating-poor      { color: var(--red); font-weight: 700; }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; align-items: flex-end; }
+.modal-overlay.open { display: flex; }
+.modal-box { background: white; border-radius: 20px 20px 0 0; padding: 24px 20px 32px; width: 100%; max-height: 93vh; overflow-y: auto; -webkit-overflow-scrolling: touch; animation: slideUp 0.25s ease; }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.modal-title { font-size: 17px; font-weight: 700; color: var(--green-dark); }
+.modal-close { width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-600); flex-shrink: 0; }
+
+/* FORM CONTROLS */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fg { margin-bottom: 14px; }
+.fl { display: block; font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 5px; }
+.fc { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-size: 15px; font-family: inherit; color: var(--gray-800); background: white; -webkit-appearance: none; }
+.fc:focus { outline: none; border-color: var(--green-main); }
+select.fc { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234b5563' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+textarea.fc { min-height: 75px; resize: vertical; }
+
+/* ATTENDANCE */
+.att-grid { display: flex; flex-direction: column; gap: 8px; }
+.att-row { display: flex; align-items: center; gap: 8px; background: var(--gray-50); border-radius: var(--radius-sm); padding: 10px 12px; flex-wrap: wrap; }
+.att-roll { font-size: 11px; color: var(--gray-400); background: var(--gray-200); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.att-name { flex: 1; font-weight: 500; font-size: 14px; min-width: 80px; }
+.att-btns { display: flex; gap: 4px; }
+.att-btn { padding: 7px 12px; border: 2px solid var(--gray-200); border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; background: white; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.att-btn.sel-P { background: #dcfce7; border-color: #16a34a; color: #16a34a; }
+.att-btn.sel-A { background: var(--red-light); border-color: var(--red); color: var(--red); }
+.att-btn.sel-L { background: #fef3c7; border-color: #d97706; color: #d97706; }
+
+/* PROFILE */
+.profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--green-main); color: white; font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.profile-name { font-size: 18px; font-weight: 700; color: var(--green-dark); }
+.profile-meta { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.info-label { font-size: 11px; color: var(--gray-400); margin-bottom: 2px; }
+.info-value { font-size: 14px; font-weight: 500; }
+.contact-actions { display: flex; gap: 10px; }
+.contact-actions a.btn { flex: 1; }
+
+/* TOAST */
+.toast { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background: var(--green-dark); color: white; padding: 12px 20px; border-radius: var(--radius); font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; white-space: nowrap; max-width: 90vw; text-align: center; pointer-events: none; }
+.toast.show { opacity: 1; }
+.toast.terror { background: var(--red); }
+
+/* SPINNER */
+.spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: white; border-radius: 50%; animation: spin 0.65s linear infinite; vertical-align: middle; }
+.spinner-g { border-color: var(--gray-200); border-top-color: var(--green-main); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .bottom-nav { display: none; }
+  .page-content { padding: 24px; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .modal-overlay { align-items: center; }
+  .modal-box { border-radius: var(--radius); max-width: 580px; margin: 0 auto; max-height: 82vh; }
+  .desktop-layout { display: grid; grid-template-columns: 220px 1fr; align-items: start; }
+  .sidebar { background: white; min-height: calc(100vh - 60px); padding: 16px 0; border-right: 1px solid var(--gray-200); position: sticky; top: 60px; }
+  .sidebar-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; cursor: pointer; color: var(--gray-600); font-size: 14px; font-weight: 500; border: none; background: none; width: 100%; text-align: left; font-family: inherit; }
+  .sidebar-item:hover { background: var(--green-pale); color: var(--green-dark); }
+  .sidebar-item.active { background: var(--green-light); color: var(--green-main); border-right: 3px solid var(--green-main); font-weight: 700; }
+  .si-icon { font-size: 18px; }
+}
+@media (max-width: 767px) {
+  .sidebar { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-page">
+  <div class="login-card">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('bn')" id="lang-bn">বাং</button>
+      <button class="lang-btn" onclick="setLang('en')" id="lang-en">EN</button>
+    </div>
+    <div class="login-brand">
+      <div class="login-logo">🕌</div>
+      <div class="login-title" id="login-title">তালিমুস সুন্নাহ হাফিজিয়া মাদ্রাসা</div>
+      <div class="login-subtitle" id="login-sub">ছাত্র ব্যবস্থাপনা সিস্টেম</div>
+    </div>
+    <div class="error-msg" id="login-error"></div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-uid">ব্যবহারকারী আইডি</label>
+      <input class="form-input" type="text" id="user-id" placeholder="যেমন: ADMIN001" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    </div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-pin">পিন</label>
+      <input class="form-input" type="password" id="pin" placeholder="আপনার পিন দিন" inputmode="numeric" maxlength="8" autocomplete="current-password">
+    </div>
+    <button class="btn btn-primary" id="login-btn" onclick="doLogin()">প্রবেশ করুন</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="top-nav">
+    <div class="nav-inner">
+      <div class="nav-brand">তালিমুস সুন্নাহ<small>হাফিজিয়া মাদ্রাসা</small></div>
+      <div class="nav-actions">
+        <button class="nav-lang" onclick="toggleLang()">EN/বাং</button>
+        <span class="nav-user-badge" id="nav-user">👤</span>
+        <button class="nav-logout-btn" onclick="doLogout()">বের হন</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="desktop-layout">
+    <nav class="sidebar">
+      <button class="sidebar-item active" onclick="showPage('dashboard')" id="sb-dashboard"><span class="si-icon">🏠</span> ড্যাশবোর্ড</button>
+      <button class="sidebar-item" onclick="showPage('students')" id="sb-students"><span class="si-icon">👨‍🎓</span> ছাত্র</button>
+      <button class="sidebar-item" onclick="showPage('attendance')" id="sb-attendance"><span class="si-icon">📋</span> উপস্থিতি</button>
+      <button class="sidebar-item" onclick="showPage('reports')" id="sb-reports"><span class="si-icon">📝</span> সাপ্তাহিক রিপোর্ট</button>
+      <button class="sidebar-item" onclick="showPage('results')" id="sb-results"><span class="si-icon">🏆</span> ফলাফল</button>
+    </nav>
+
+    <div class="page-content">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-title">🏠 ড্যাশবোর্ড</div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-value" id="stat-students">…</div><div class="stat-label">মোট ছাত্র</div></div>
+          <div class="stat-card"><div class="stat-value" id="stat-classes">…</div><div class="stat-label">শ্রেণী</div></div>
+          <div class="stat-card"><div class="stat-value" id="stat-present">…</div><div class="stat-label">আজ উপস্থিত</div></div>
+          <div class="stat-card"><div class="stat-value" id="stat-absent">…</div><div class="stat-label">আজ অনুপস্থিত</div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">⚡ দ্রুত কার্যক্রম</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="btn btn-primary" onclick="showPage('attendance')">📋 উপস্থিতি</button>
+            <button class="btn btn-gold" onclick="openAddStudentModal()">➕ ছাত্র যোগ</button>
+            <button class="btn btn-outline" onclick="showPage('reports')">📝 রিপোর্ট</button>
+            <button class="btn btn-secondary" onclick="showPage('results')">🏆 ফলাফল</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:10px">👤 <span id="dash-welcome">স্বাগতম</span></div>
+          <div style="color:var(--gray-600);font-size:14px" id="dash-role-info"></div>
+          <div style="color:var(--gray-400);font-size:13px;margin-top:4px" id="dash-date"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">👨‍🎓 সর্বশেষ ছাত্র</div>
+            <button class="btn btn-outline btn-sm" onclick="showPage('students')">সব দেখুন →</button>
+          </div>
+          <div class="table-wrap">
+            <table><thead><tr><th>রোল</th><th>নাম</th><th>শ্রেণী</th><th>অবস্থা</th></tr></thead>
+            <tbody id="dash-students-tbody"><tr><td colspan="4" class="loading-cell"><span class="spinner spinner-g"></span></td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDENTS -->
+      <div class="page" id="page-students">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div class="page-title" style="margin-bottom:0">👨‍🎓 ছাত্র তালিকা</div>
+          <button class="btn btn-primary btn-sm" onclick="openAddStudentModal()">+ যোগ করুন</button>
+        </div>
+        <div class="filter-bar">
+          <input type="text" id="stu-search" placeholder="নাম / রোল খুঁজুন..." oninput="filterStudents()">
+          <select id="stu-class-filter" onchange="filterStudents()"><option value="all">সব শ্রেণী</option></select>
+          <select id="stu-status-filter" onchange="filterStudents()">
+            <option value="all">সব</option><option value="active">সক্রিয়</option><option value="inactive">নিষ্ক্রিয়</option>
+          </select>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="table-wrap">
+            <table><thead><tr><th>রোল</th><th>নাম</th><th>শ্রেণী</th><th>অভিভাবক</th><th>অবস্থা</th><th>কার্যক্রম</th></tr></thead>
+            <tbody id="students-tbody"><tr><td colspan="6" class="loading-cell"><span class="spinner spinner-g"></span> লোড হচ্ছে...</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTENDANCE -->
+      <div class="page" id="page-attendance">
+        <div class="page-title">📋 উপস্থিতি</div>
+        <div class="card">
+          <div class="form-row" style="margin-bottom:12px">
+            <div class="fg" style="margin-bottom:0"><label class="fl">শ্রেণী</label><select class="fc" id="att-class-select"><option value="">শ্রেণী বেছে নিন</option></select></div>
+            <div class="fg" style="margin-bottom:0"><label class="fl">তারিখ</label><input class="fc" type="date" id="att-date"></div>
+          </div>
+          <button class="btn btn-primary btn-sm" style="width:100%;margin-top:10px" onclick="loadAttendanceStudents()">📋 ছাত্র লোড করুন</button>
+        </div>
+        <div class="card" id="att-students-card" style="display:none">
+          <div class="card-header"><div class="card-title">উপস্থিতি চিহ্নিত করুন</div><span style="font-size:12px;color:var(--gray-400)" id="att-count"></span></div>
+          <div class="att-grid" id="att-grid"></div>
+          <button class="btn btn-primary" style="margin-top:16px" onclick="saveAttendance()">✅ উপস্থিতি সংরক্ষণ করুন</button>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">📅 রেকর্ড দেখুন</div></div>
+          <div class="filter-bar">
+            <input type="date" id="att-hist-date" class="fc" style="min-width:130px">
+            <select id="att-hist-class" class="fc" style="min-width:110px"><option value="all">সব শ্রেণী</option></select>
+            <button class="btn btn-primary btn-sm" style="width:auto" onclick="loadAttendanceHistory()">দেখুন</button>
+          </div>
+          <div class="table-wrap">
+            <table><thead><tr><th>তারিখ</th><th>নাম</th><th>শ্রেণী</th><th>অবস্থা</th></tr></thead>
+            <tbody id="att-history-tbody"><tr><td colspan="4" class="loading-cell">—</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- REPORTS -->
+      <div class="page" id="page-reports">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div class="page-title" style="margin-bottom:0">📝 সাপ্তাহিক রিপোর্ট</div>
+          <button class="btn btn-primary btn-sm" onclick="openAddReportModal()">+ রিপোর্ট</button>
+        </div>
+        <div class="filter-bar">
+          <select id="rpt-class-filter" class="fc" onchange="loadReports()"><option value="all">সব শ্রেণী</option></select>
+          <select id="rpt-week-filter" class="fc" onchange="loadReports()"><option value="">সব সপ্তাহ</option></select>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="table-wrap">
+            <table><thead><tr><th>ছাত্র</th><th>শ্রেণী</th><th>সপ্তাহ</th><th>আখলাক</th><th>কুরআন</th><th>আচরণ</th><th>শিক্ষক</th></tr></thead>
+            <tbody id="reports-tbody"><tr><td colspan="7" class="loading-cell"><span class="spinner spinner-g"></span></td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="page" id="page-results">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div class="page-title" style="margin-bottom:0">🏆 ফলাফল</div>
+          <button class="btn btn-primary btn-sm" onclick="openAddResultModal()">+ ফলাফল</button>
+        </div>
+        <div class="filter-bar">
+          <select id="res-class-filter" class="fc" onchange="loadResults()"><option value="all">সব শ্রেণী</option></select>
+          <select id="res-exam-filter" class="fc" onchange="loadResults()"><option value="">সব পরীক্ষা</option></select>
+          <button class="btn btn-gold btn-sm" style="width:auto" onclick="openRankModal()">র‍্যাংক</button>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="table-wrap">
+            <table><thead><tr><th>রোল</th><th>নাম</th><th>শ্রেণী</th><th>পরীক্ষা</th><th>বিষয়</th><th>নম্বর</th><th>গ্রেড</th><th>স্থান</th></tr></thead>
+            <tbody id="results-tbody"><tr><td colspan="8" class="loading-cell"><span class="spinner spinner-g"></span></td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="tab-item active" onclick="showPage('dashboard')" id="tab-dashboard"><span class="tab-icon">🏠</span>ড্যাশবোর্ড</button>
+    <button class="tab-item" onclick="showPage('students')" id="tab-students"><span class="tab-icon">👨‍🎓</span>ছাত্র</button>
+    <button class="tab-item" onclick="showPage('attendance')" id="tab-attendance"><span class="tab-icon">📋</span>উপস্থিতি</button>
+    <button class="tab-item" onclick="showPage('reports')" id="tab-reports"><span class="tab-icon">📝</span>রিপোর্ট</button>
+    <button class="tab-item" onclick="showPage('results')" id="tab-results"><span class="tab-icon">🏆</span>ফলাফল</button>
+  </nav>
+</div>
+
+<!-- MODAL: Add/Edit Student -->
+<div class="modal-overlay" id="modal-add-student">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-student-title">ছাত্র যোগ করুন</div>
+      <button class="modal-close" onclick="closeModal('modal-add-student')">✕</button>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">রোল নম্বর *</label><input class="fc" type="text" id="stu-roll" inputmode="numeric"></div>
+      <div class="fg"><label class="fl">শ্রেণী *</label><select class="fc" id="stu-class"></select></div>
+    </div>
+    <div class="fg"><label class="fl">ছাত্রের নাম *</label><input class="fc" type="text" id="stu-name"></div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">ব্যাচ</label><input class="fc" type="text" id="stu-batch" placeholder="যেমন: 2024"></div>
+      <div class="fg"><label class="fl">অভিভাবকের নাম</label><input class="fc" type="text" id="stu-guardian-name"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">ফোন নম্বর</label><input class="fc" type="tel" id="stu-phone" inputmode="tel"></div>
+      <div class="fg"><label class="fl">হোয়াটসঅ্যাপ</label><input class="fc" type="tel" id="stu-whatsapp" inputmode="tel"></div>
+    </div>
+    <div class="fg"><label class="fl">ঠিকানা</label><input class="fc" type="text" id="stu-address"></div>
+    <input type="hidden" id="stu-edit-id">
+    <button class="btn btn-primary" id="btn-save-student" onclick="saveStudent()" style="margin-top:10px">✅ সংরক্ষণ করুন</button>
+  </div>
+</div>
+
+<!-- MODAL: Profile -->
+<div class="modal-overlay" id="modal-profile">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">ছাত্রের প্রোফাইল</div><button class="modal-close" onclick="closeModal('modal-profile')">✕</button></div>
+    <div id="profile-content"></div>
+  </div>
+</div>
+
+<!-- MODAL: Weekly Report -->
+<div class="modal-overlay" id="modal-add-report">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">📝 সাপ্তাহিক রিপোর্ট</div><button class="modal-close" onclick="closeModal('modal-add-report')">✕</button></div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">শ্রেণী</label><select class="fc" id="rpt-class-sel" onchange="loadReportStudents()"></select></div>
+      <div class="fg"><label class="fl">ছাত্র</label><select class="fc" id="rpt-student-sel"></select></div>
+    </div>
+    <div class="fg"><label class="fl">সপ্তাহ</label><input class="fc" type="week" id="rpt-week"></div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">গৃহকর্ম</label><select class="fc" id="rpt-homework"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+      <div class="fg"><label class="fl">কুরআন অগ্রগতি</label><select class="fc" id="rpt-quran"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+      <div class="fg"><label class="fl">আচরণ</label><select class="fc" id="rpt-behavior"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+      <div class="fg"><label class="fl">শৃঙ্খলা</label><select class="fc" id="rpt-discipline"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+      <div class="fg"><label class="fl">আখলাক</label><select class="fc" id="rpt-akhlaq"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+      <div class="fg"><label class="fl">উপস্থিতি</label><select class="fc" id="rpt-attendance-sum"><option>Excellent</option><option>Good</option><option selected>Average</option><option>Poor</option></select></div>
+    </div>
+    <div class="fg"><label class="fl">মন্তব্য</label><textarea class="fc" id="rpt-notes" placeholder="বিস্তারিত মন্তব্য..."></textarea></div>
+    <div class="fg"><label class="fl">উন্নতির পরামর্শ</label><textarea class="fc" id="rpt-improvement" placeholder="কোথায় উন্নতি দরকার..."></textarea></div>
+    <button class="btn btn-primary" id="btn-save-report" onclick="saveReport()" style="margin-top:8px">✅ রিপোর্ট জমা দিন</button>
+  </div>
+</div>
+
+<!-- MODAL: Result -->
+<div class="modal-overlay" id="modal-add-result">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🏆 ফলাফল এন্ট্রি</div><button class="modal-close" onclick="closeModal('modal-add-result')">✕</button></div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">শ্রেণী</label><select class="fc" id="res-class-sel" onchange="loadResultStudents()"></select></div>
+      <div class="fg"><label class="fl">ছাত্র</label><select class="fc" id="res-student-sel"></select></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">পরীক্ষার নাম</label><input class="fc" type="text" id="res-exam-name" placeholder="অর্ধ বার্ষিক"></div>
+      <div class="fg"><label class="fl">বছর</label><input class="fc" type="text" id="res-year" placeholder="2024"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label class="fl">বিষয়</label><select class="fc" id="res-subject-sel"></select></div>
+      <div class="fg"><label class="fl">প্রাপ্ত নম্বর</label><input class="fc" type="number" id="res-marks" min="0" max="100" inputmode="decimal"></div>
+    </div>
+    <div class="fg"><label class="fl">মোট নম্বর</label><input class="fc" type="number" id="res-total" value="100" inputmode="decimal"></div>
+    <button class="btn btn-primary" id="btn-save-result" onclick="saveResult()" style="margin-top:8px">✅ ফলাফল সংরক্ষণ করুন</button>
+  </div>
+</div>
+
+<!-- MODAL: Rank -->
+<div class="modal-overlay" id="modal-rank">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">📊 র‍্যাংক তৈরি</div><button class="modal-close" onclick="closeModal('modal-rank')">✕</button></div>
+    <div class="fg"><label class="fl">শ্রেণী</label><select class="fc" id="rank-class"></select></div>
+    <div class="fg"><label class="fl">পরীক্ষার নাম</label><input class="fc" type="text" id="rank-exam" placeholder="পরীক্ষার নাম"></div>
+    <div class="fg"><label class="fl">বছর</label><input class="fc" type="text" id="rank-year" placeholder="2024"></div>
+    <button class="btn btn-gold" onclick="doGenerateRank()" style="margin-top:8px">📊 র‍্যাংক তৈরি করুন</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIG — set your Apps Script URL here
+// ============================================================
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPPXEu-c1ypzP4CMI39-e8iZqSNWSL1c327X9NI9nlsVXTrO9RPpVQRiuLFwqbD9My/exec';
+
+// ============================================================
+// API — replaces google.script.run entirely
+// All calls go to doPost via fetch(). No Google login needed.
+// ============================================================
+function api(action) {
+  var args = Array.prototype.slice.call(arguments, 1);
+  return fetch(SCRIPT_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body:    JSON.stringify({ action: action, params: args })
+  }).then(function(r) { return r.json(); });
+}
+
+// ============================================================
+// STATE
+// ============================================================
+var currentLang   = 'bn';
+var currentPage   = 'dashboard';
+var allStudents   = [];
+var allClasses    = [];
+var currentUser   = null;
+var attendanceMap = {};
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = function() {
+  var td = localDateStr();
+  setVal('att-date', td);
+  setVal('att-hist-date', td);
+  setVal('rpt-week', currentWeekValue());
+  setLang('bn');
+};
+
+function localDateStr() {
+  var d = new Date();
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+}
+function pad(n) { return n < 10 ? '0' + n : String(n); }
+function currentWeekValue() {
+  var d = new Date(), y = d.getFullYear();
+  var start = new Date(y, 0, 1);
+  var wk = Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
+  return y + '-W' + pad(wk);
+}
+function setVal(id, v) { var e = gi(id); if (e) e.value = v; }
+function gi(id) { return document.getElementById(id); }
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// LANGUAGE
+// ============================================================
+function setLang(lang) {
+  currentLang = lang;
+  gi('lang-bn').classList.toggle('active', lang === 'bn');
+  gi('lang-en').classList.toggle('active', lang === 'en');
+  var bn = lang === 'bn';
+  gi('login-title').textContent = bn ? 'তালিমুস সুন্নাহ হাফিজিয়া মাদ্রাসা' : 'Talimus Sunnah Hafizia Madrasha';
+  gi('login-sub').textContent   = bn ? 'ছাত্র ব্যবস্থাপনা সিস্টেম' : 'Student Management System';
+  gi('lbl-uid').textContent     = bn ? 'ব্যবহারকারী আইডি' : 'User ID';
+  gi('lbl-pin').textContent     = bn ? 'পিন' : 'PIN';
+  gi('login-btn').textContent   = bn ? 'প্রবেশ করুন' : 'Login';
+}
+function toggleLang() { setLang(currentLang === 'bn' ? 'en' : 'bn'); }
+
+// ============================================================
+// LOGIN
+// ============================================================
+function doLogin() {
+  var uid = gi('user-id').value.trim();
+  var pin = gi('pin').value.trim();
+  var err = gi('login-error');
+  var btn = gi('login-btn');
+  err.classList.remove('show');
+  if (!uid || !pin) { err.textContent = 'আইডি এবং পিন দিন'; err.classList.add('show'); return; }
+
+  // Check URL is set
+  if (!SCRIPT_URL || SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwPPXEu-c1ypzP4CMI39-e8iZqSNWSL1c327X9NI9nlsVXTrO9RPpVQRiuLFwqbD9My/exec') {
+    err.textContent = 'SCRIPT_URL সেট করা হয়নি। admin.html ফাইলে URL দিন।';
+    err.classList.add('show'); return;
+  }
+
+  btn.innerHTML = '<span class="spinner"></span>';
+  btn.disabled  = true;
+
+  api('loginUser', uid, pin)
+    .then(function(res) {
+      btn.innerHTML = currentLang === 'bn' ? 'প্রবেশ করুন' : 'Login';
+      btn.disabled  = false;
+      if (res && res.success) {
+        currentUser = res.data;
+        loadApp();
+      } else {
+        err.textContent = (res && res.message) ? res.message : 'লগইন ব্যর্থ';
+        err.classList.add('show');
+        gi('pin').value = '';
+      }
+    })
+    .catch(function(e) {
+      btn.innerHTML = currentLang === 'bn' ? 'প্রবেশ করুন' : 'Login';
+      btn.disabled  = false;
+      err.textContent = 'সংযোগ সমস্যা: ' + e.message;
+      err.classList.add('show');
+    });
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && gi('login-page') && gi('login-page').style.display !== 'none') doLogin();
+});
+
+// ============================================================
+// LOAD APP
+// ============================================================
+function loadApp() {
+  api('getDashboardData')
+    .then(function(data) {
+      if (!data || !data.success) { toast('ড্যাশবোর্ড লোড ব্যর্থ', 1); return; }
+      var d = data.data || data; // handle both wrapped and plain
+      allClasses = d.classes || [];
+
+      gi('login-page').style.display = 'none';
+      gi('app').classList.add('visible');
+
+      gi('nav-user').textContent      = '👤 ' + currentUser.name;
+      gi('dash-welcome').textContent  = 'স্বাগতম, ' + currentUser.name;
+      gi('dash-role-info').textContent = 'ভূমিকা: ' + currentUser.role + (currentUser.assignedClass ? ' | ' + currentUser.assignedClass : '');
+      gi('dash-date').textContent = new Date().toLocaleDateString('bn-BD', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+      setStats(d.stats);
+      buildClassDropdowns();
+
+      loadStudents(function() {
+        loadReports();
+        loadResults();
+        loadWeeks();
+        loadExamNames();
+      });
+    })
+    .catch(function(e) { toast('লোড ব্যর্থ: ' + e.message, 1); });
+}
+
+function setStats(stats) {
+  if (!stats) return;
+  gi('stat-students').textContent = stats.totalStudents != null ? stats.totalStudents : '0';
+  gi('stat-classes').textContent  = stats.totalClasses  != null ? stats.totalClasses  : '0';
+  gi('stat-present').textContent  = stats.presentToday  != null ? stats.presentToday  : '0';
+  gi('stat-absent').textContent   = stats.absentToday   != null ? stats.absentToday   : '0';
+}
+
+function refreshStats() {
+  api('getDashboardData')
+    .then(function(data) {
+      var d = (data && (data.data || data));
+      if (d) setStats(d.stats);
+    }).catch(function(){});
+}
+
+function buildClassDropdowns() {
+  var filterHtml = '<option value="all">সব শ্রেণী</option>';
+  var selectHtml = '';
+  var attHtml    = '<option value="">শ্রেণী বেছে নিন</option>';
+
+  allClasses.forEach(function(c) {
+    var label = esc(c.name) + (c.nameBn ? ' (' + esc(c.nameBn) + ')' : '');
+    filterHtml += '<option value="' + esc(c.name) + '">' + label + '</option>';
+    selectHtml += '<option value="' + esc(c.name) + '">' + label + '</option>';
+    attHtml    += '<option value="' + esc(c.name) + '">' + label + '</option>';
+  });
+
+  setHTML('stu-class-filter', filterHtml);
+  setHTML('att-hist-class',   filterHtml);
+  setHTML('rpt-class-filter', filterHtml);
+  setHTML('res-class-filter', filterHtml);
+  setHTML('att-class-select', attHtml);
+  setHTML('stu-class',     selectHtml);
+  setHTML('rpt-class-sel', selectHtml);
+  setHTML('res-class-sel', selectHtml);
+  setHTML('rank-class',    selectHtml);
+}
+
+function setHTML(id, html) { var e = gi(id); if (e) e.innerHTML = html; }
+
+// ============================================================
+// LOGOUT
+// ============================================================
+function doLogout() {
+  api('logoutUser')
+    .then(function() { resetToLogin(); })
+    .catch(function() { resetToLogin(); });
+}
+function resetToLogin() {
+  gi('app').classList.remove('visible');
+  gi('login-page').style.display = 'flex';
+  gi('user-id').value = '';
+  gi('pin').value     = '';
+  currentUser  = null;
+  allStudents  = [];
+}
+
+// ============================================================
+// PAGE NAVIGATION
+// ============================================================
+function showPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page').forEach(function(p)         { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-item').forEach(function(t)     { t.classList.remove('active'); });
+  document.querySelectorAll('.sidebar-item').forEach(function(s) { s.classList.remove('active'); });
+  var pe = gi('page-' + page); if (pe) pe.classList.add('active');
+  var te = gi('tab-'  + page); if (te) te.classList.add('active');
+  var se = gi('sb-'   + page); if (se) se.classList.add('active');
+  window.scrollTo(0, 0);
+  if (page === 'students')  loadStudents();
+  if (page === 'reports')   loadReports();
+  if (page === 'results')   loadResults();
+  if (page === 'dashboard') refreshStats();
+}
+
+// ============================================================
+// STUDENTS
+// ============================================================
+function loadStudents(callback) {
+  tableLoad('students-tbody', 6);
+  tableLoad('dash-students-tbody', 4);
+
+  api('getAllStudents', null)
+    .then(function(res) {
+      // getAllStudents returns plain array, may be wrapped
+      var students = Array.isArray(res) ? res : (Array.isArray(res && res.data) ? res.data : []);
+      allStudents = students;
+      var activeCount = allStudents.filter(function(s) { return s.status === 'active'; }).length;
+      gi('stat-students').textContent = activeCount;
+      renderStudentsTable(allStudents);
+      renderDashStudents(allStudents);
+      if (typeof callback === 'function') callback();
+    })
+    .catch(function(e) {
+      tableErr('students-tbody', 6, 'লোড ব্যর্থ: ' + e.message);
+      tableErr('dash-students-tbody', 4, 'লোড ব্যর্থ');
+      toast('ছাত্র লোড ব্যর্থ', 1);
+      if (typeof callback === 'function') callback();
+    });
+}
+
+function filterStudents() {
+  var q   = (gi('stu-search').value || '').trim().toLowerCase();
+  var cls = gi('stu-class-filter').value;
+  var st  = gi('stu-status-filter').value;
+  var result = allStudents.filter(function(s) {
+    var okClass  = !cls || cls === 'all' || s.class === cls;
+    var okStatus = !st  || st  === 'all' || s.status === st;
+    var okSearch = !q   ||
+      (s.name         && s.name.toLowerCase().indexOf(q)         !== -1) ||
+      (s.roll         && String(s.roll).toLowerCase().indexOf(q) !== -1) ||
+      (s.studentId    && s.studentId.toLowerCase().indexOf(q)    !== -1) ||
+      (s.guardianName && s.guardianName.toLowerCase().indexOf(q) !== -1);
+    return okClass && okStatus && okSearch;
+  });
+  renderStudentsTable(result);
+}
+
+function renderStudentsTable(list) {
+  var tbody = gi('students-tbody');
+  if (!tbody) return;
+  if (!list || list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="loading-cell">কোনো ছাত্র পাওয়া যায়নি</td></tr>'; return;
+  }
+  tbody.innerHTML = list.map(function(s) {
+    var sb = s.status === 'active'
+      ? '<span class="badge badge-green">সক্রিয়</span>'
+      : '<span class="badge badge-gray">নিষ্ক্রিয়</span>';
+    var wa = s.whatsapp ? s.whatsapp.replace(/^0/, '') : '';
+    var actions = '<div style="display:flex;gap:4px;flex-wrap:wrap">' +
+      '<button class="btn btn-sm btn-outline" onclick="viewProfile(\'' + esc(s.studentId) + '\')">👤</button>' +
+      (s.guardianPhone ? '<a class="btn btn-sm btn-secondary" href="tel:' + esc(s.guardianPhone) + '">📞</a>' : '') +
+      (wa ? '<a class="btn btn-sm btn-gold" href="https://wa.me/88' + esc(wa) + '" target="_blank">💬</a>' : '') +
+      '<button class="btn btn-sm btn-primary" onclick="editStudent(\'' + esc(s.studentId) + '\')">✏️</button>' +
+      '</div>';
+    return '<tr>' +
+      '<td><strong>' + esc(s.roll) + '</strong></td>' +
+      '<td>' + esc(s.name) + '</td>' +
+      '<td>' + esc(s.class) + '</td>' +
+      '<td>' + esc(s.guardianName || '—') + '</td>' +
+      '<td>' + sb + '</td>' +
+      '<td>' + actions + '</td></tr>';
+  }).join('');
+}
+
+function renderDashStudents(list) {
+  var tbody = gi('dash-students-tbody');
+  if (!tbody) return;
+  var recent = (list || []).slice(0, 5);
+  if (!recent.length) {
+    tbody.innerHTML = '<tr><td colspan="4" class="loading-cell">কোনো ছাত্র নেই</td></tr>'; return;
+  }
+  tbody.innerHTML = recent.map(function(s) {
+    var sb = s.status === 'active' ? '<span class="badge badge-green">সক্রিয়</span>' : '<span class="badge badge-gray">নিষ্ক্রিয়</span>';
+    return '<tr><td><strong>' + esc(s.roll) + '</strong></td><td>' + esc(s.name) + '</td><td>' + esc(s.class) + '</td><td>' + sb + '</td></tr>';
+  }).join('');
+}
+
+function openAddStudentModal() {
+  gi('modal-student-title').textContent = 'ছাত্র যোগ করুন';
+  gi('stu-edit-id').value = '';
+  ['stu-roll','stu-name','stu-batch','stu-guardian-name','stu-phone','stu-whatsapp','stu-address'].forEach(function(id) {
+    var e = gi(id); if (e) e.value = '';
+  });
+  openModal('modal-add-student');
+}
+
+function editStudent(sid) {
+  var s = allStudents.find(function(x) { return x.studentId === sid; });
+  if (!s) { toast('ছাত্র পাওয়া যায়নি', 1); return; }
+  gi('modal-student-title').textContent = 'ছাত্রের তথ্য সম্পাদনা';
+  gi('stu-edit-id').value       = s.studentId;
+  gi('stu-roll').value          = s.roll || '';
+  gi('stu-name').value          = s.name || '';
+  gi('stu-class').value         = s.class || '';
+  gi('stu-batch').value         = s.batch || '';
+  gi('stu-guardian-name').value = s.guardianName || '';
+  gi('stu-phone').value         = s.guardianPhone || '';
+  gi('stu-whatsapp').value      = s.whatsapp || '';
+  gi('stu-address').value       = s.address || '';
+  openModal('modal-add-student');
+}
+
+function saveStudent() {
+  var editId = gi('stu-edit-id').value.trim();
+  var d = {
+    roll: gi('stu-roll').value.trim(), name: gi('stu-name').value.trim(),
+    class: gi('stu-class').value, batch: gi('stu-batch').value.trim(),
+    guardianName: gi('stu-guardian-name').value.trim(),
+    guardianPhone: gi('stu-phone').value.trim(),
+    whatsapp: gi('stu-whatsapp').value.trim(),
+    address: gi('stu-address').value.trim(), status: 'active'
+  };
+  if (!d.name)  { toast('ছাত্রের নাম দিন', 1);  return; }
+  if (!d.roll)  { toast('রোল নম্বর দিন', 1);    return; }
+  if (!d.class) { toast('শ্রেণী বেছে নিন', 1); return; }
+
+  var btn = gi('btn-save-student');
+  btn.disabled = true; btn.textContent = 'সংরক্ষণ হচ্ছে...';
+
+  var call = editId
+    ? api('updateStudent', editId, d)
+    : api('addStudent', d);
+
+  call.then(function(res) {
+    btn.disabled = false; btn.textContent = '✅ সংরক্ষণ করুন';
+    if (res && res.success) {
+      closeModal('modal-add-student');
+      toast(editId ? 'তথ্য আপডেট হয়েছে ✅' : 'ছাত্র যোগ হয়েছে ✅');
+      loadStudents(refreshStats);
+    } else {
+      toast((res && res.message) ? res.message : 'সংরক্ষণ ব্যর্থ', 1);
+    }
+  }).catch(function(e) {
+    btn.disabled = false; btn.textContent = '✅ সংরক্ষণ করুন';
+    toast('সমস্যা: ' + e.message, 1);
+  });
+}
+
+function viewProfile(sid) {
+  var s = allStudents.find(function(x) { return x.studentId === sid; });
+  if (!s) return;
+  var wa = s.whatsapp ? s.whatsapp.replace(/^0/, '') : '';
+  gi('profile-content').innerHTML =
+    '<div class="profile-header">' +
+      '<div class="profile-avatar">' + esc((s.name || '?').charAt(0).toUpperCase()) + '</div>' +
+      '<div><div class="profile-name">' + esc(s.name) + '</div>' +
+      '<div class="profile-meta">রোল: ' + esc(s.roll) + ' | ' + esc(s.class) + '</div></div>' +
+    '</div>' +
+    '<div class="info-grid">' +
+      '<div><div class="info-label">ব্যাচ</div><div class="info-value">' + esc(s.batch || '—') + '</div></div>' +
+      '<div><div class="info-label">অবস্থা</div><div class="info-value"><span class="badge ' + (s.status === 'active' ? 'badge-green' : 'badge-gray') + '">' + esc(s.status) + '</span></div></div>' +
+      '<div><div class="info-label">অভিভাবক</div><div class="info-value">' + esc(s.guardianName || '—') + '</div></div>' +
+      '<div><div class="info-label">ফোন</div><div class="info-value">' + esc(s.guardianPhone || '—') + '</div></div>' +
+      '<div style="grid-column:1/-1"><div class="info-label">ঠিকানা</div><div class="info-value">' + esc(s.address || '—') + '</div></div>' +
+    '</div>' +
+    '<div class="contact-actions">' +
+      (s.guardianPhone ? '<a class="btn btn-primary" href="tel:' + esc(s.guardianPhone) + '">📞 কল করুন</a>' : '') +
+      (wa ? '<a class="btn btn-gold" href="https://wa.me/88' + esc(wa) + '" target="_blank">💬 WhatsApp</a>' : '') +
+    '</div>';
+  openModal('modal-profile');
+}
+
+// ============================================================
+// ATTENDANCE
+// ============================================================
+function loadAttendanceStudents() {
+  var cls  = gi('att-class-select').value;
+  var date = gi('att-date').value;
+  if (!cls)  { toast('শ্রেণী বেছে নিন', 1); return; }
+  if (!date) { toast('তারিখ দিন', 1);       return; }
+  attendanceMap = {};
+  gi('att-students-card').style.display = 'none';
+  var students = allStudents.filter(function(s) { return s.class === cls && s.status === 'active'; });
+  if (students.length > 0) {
+    renderAttendanceGrid(students);
+  } else {
+    api('getStudentsForAttendance', cls)
+      .then(function(res) {
+        var list = Array.isArray(res) ? res : (res && res.data) || [];
+        renderAttendanceGrid(list);
+      })
+      .catch(function(e) { toast('লোড ব্যর্থ: ' + e.message, 1); });
+  }
+}
+
+function renderAttendanceGrid(students) {
+  if (!students || students.length === 0) { toast('এই শ্রেণীতে কোনো সক্রিয় ছাত্র নেই', 1); return; }
+  gi('att-students-card').style.display = 'block';
+  gi('att-count').textContent = students.length + ' জন ছাত্র';
+  gi('att-grid').innerHTML = students.map(function(s) {
+    attendanceMap[s.studentId] = 'Present';
+    return '<div class="att-row" id="arow-' + esc(s.studentId) + '">' +
+      '<span class="att-roll">' + esc(String(s.roll || '')) + '</span>' +
+      '<span class="att-name">' + esc(s.name || '') + '</span>' +
+      '<div class="att-btns">' +
+        '<button class="att-btn sel-P" onclick="setAtt(\'' + esc(s.studentId) + '\',\'Present\',this)">✅ উপস্থিত</button>' +
+        '<button class="att-btn" onclick="setAtt(\'' + esc(s.studentId) + '\',\'Absent\',this)">❌ অনুপস্থিত</button>' +
+        '<button class="att-btn" onclick="setAtt(\'' + esc(s.studentId) + '\',\'Late\',this)">🕐 দেরি</button>' +
+      '</div></div>';
+  }).join('');
+}
+
+function setAtt(sid, status, btn) {
+  attendanceMap[sid] = status;
+  var row = gi('arow-' + sid);
+  if (row) row.querySelectorAll('.att-btn').forEach(function(b) { b.className = 'att-btn'; });
+  var cls = { Present: 'sel-P', Absent: 'sel-A', Late: 'sel-L' };
+  btn.className = 'att-btn ' + (cls[status] || '');
+}
+
+function saveAttendance() {
+  var cls  = gi('att-class-select').value;
+  var date = gi('att-date').value;
+  var keys = Object.keys(attendanceMap);
+  if (!cls || !date) { toast('শ্রেণী ও তারিখ দিন', 1); return; }
+  if (!keys.length)  { toast('কোনো ছাত্র লোড নেই', 1); return; }
+  var records = keys.map(function(sid) { return { studentId: sid, status: attendanceMap[sid], notes: '' }; });
+  api('markAttendance', date, cls, records)
+    .then(function(res) {
+      if (res && res.success) { toast('উপস্থিতি সংরক্ষণ হয়েছে ✅'); refreshStats(); }
+      else toast((res && res.message) ? res.message : 'সংরক্ষণ ব্যর্থ', 1);
+    }).catch(function(e) { toast('সমস্যা: ' + e.message, 1); });
+}
+
+function loadAttendanceHistory() {
+  var date = gi('att-hist-date').value;
+  var cls  = gi('att-hist-class').value;
+  tableLoad('att-history-tbody', 4);
+  api('getAttendanceRecords', { date: date, class: cls })
+    .then(function(res) {
+      var data = Array.isArray(res) ? res : (res && res.data) || [];
+      var tbody = gi('att-history-tbody');
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="4" class="loading-cell">কোনো রেকর্ড নেই</td></tr>'; return; }
+      var sm = { Present: 'badge-green', Absent: 'badge-red', Late: 'badge-gold', Leave: 'badge-gray' };
+      tbody.innerHTML = data.map(function(r) {
+        var ds = String(r.date || ''); if (ds.length > 10) ds = ds.substring(0, 10);
+        return '<tr><td>' + esc(ds) + '</td><td>' + esc(r.studentName) + '</td><td>' + esc(r.class) + '</td>' +
+          '<td><span class="badge ' + (sm[r.status] || 'badge-gray') + '">' + esc(r.status) + '</span></td></tr>';
+      }).join('');
+    }).catch(function(e) { tableErr('att-history-tbody', 4, e.message); });
+}
+
+// ============================================================
+// REPORTS
+// ============================================================
+function openAddReportModal() {
+  if (allClasses.length) { gi('rpt-class-sel').value = allClasses[0].name; loadReportStudents(); }
+  openModal('modal-add-report');
+}
+
+function loadReportStudents() {
+  var cls = gi('rpt-class-sel').value;
+  var students = allStudents.filter(function(s) { return s.class === cls && s.status === 'active'; });
+  setHTML('rpt-student-sel', students.length
+    ? students.map(function(s) { return '<option value="' + esc(s.studentId) + '">' + esc(s.roll) + ' — ' + esc(s.name) + '</option>'; }).join('')
+    : '<option value="">কোনো ছাত্র নেই</option>');
+}
+
+function saveReport() {
+  var sid  = gi('rpt-student-sel').value;
+  var week = gi('rpt-week').value;
+  if (!sid)  { toast('ছাত্র বেছে নিন', 1); return; }
+  if (!week) { toast('সপ্তাহ দিন', 1);      return; }
+  var btn = gi('btn-save-report');
+  btn.disabled = true; btn.textContent = 'জমা হচ্ছে...';
+  api('submitWeeklyReport', {
+    studentId: sid, week: week,
+    homework: gi('rpt-homework').value, quranProgress: gi('rpt-quran').value,
+    behavior: gi('rpt-behavior').value, discipline: gi('rpt-discipline').value,
+    akhlaq: gi('rpt-akhlaq').value, attendance: gi('rpt-attendance-sum').value,
+    notes: gi('rpt-notes').value, improvement: gi('rpt-improvement').value
+  }).then(function(res) {
+    btn.disabled = false; btn.textContent = '✅ রিপোর্ট জমা দিন';
+    if (res && res.success) { closeModal('modal-add-report'); toast('রিপোর্ট সংরক্ষণ হয়েছে ✅'); loadReports(); loadWeeks(); }
+    else toast((res && res.message) ? res.message : 'ব্যর্থ', 1);
+  }).catch(function(e) {
+    btn.disabled = false; btn.textContent = '✅ রিপোর্ট জমা দিন';
+    toast('সমস্যা: ' + e.message, 1);
+  });
+}
+
+function loadReports() {
+  var cls  = gi('rpt-class-filter') ? gi('rpt-class-filter').value : 'all';
+  var week = gi('rpt-week-filter')  ? gi('rpt-week-filter').value  : '';
+  tableLoad('reports-tbody', 7);
+  api('getWeeklyReports', { class: cls, week: week })
+    .then(function(res) {
+      var data = Array.isArray(res) ? res : (res && res.data) || [];
+      var tbody = gi('reports-tbody');
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="7" class="loading-cell">কোনো রিপোর্ট নেই</td></tr>'; return; }
+      tbody.innerHTML = data.slice(0, 100).map(function(r) {
+        return '<tr><td>' + esc(r.studentName) + '</td><td>' + esc(r.class) + '</td><td>' + esc(r.week) + '</td>' +
+          '<td class="rating-' + (r.akhlaq||'').toLowerCase() + '">' + esc(r.akhlaq||'—') + '</td>' +
+          '<td class="rating-' + (r.quranProgress||'').toLowerCase() + '">' + esc(r.quranProgress||'—') + '</td>' +
+          '<td class="rating-' + (r.behavior||'').toLowerCase() + '">' + esc(r.behavior||'—') + '</td>' +
+          '<td>' + esc(r.teacherName||'') + '</td></tr>';
+      }).join('');
+    }).catch(function(e) { tableErr('reports-tbody', 7, e.message); });
+}
+
+function loadWeeks() {
+  api('getAvailableWeeks')
+    .then(function(res) {
+      var weeks = Array.isArray(res) ? res : (res && res.data) || [];
+      var sel = gi('rpt-week-filter'); if (!sel) return;
+      sel.innerHTML = '<option value="">সব সপ্তাহ</option>' +
+        weeks.map(function(w) { return '<option value="' + esc(w) + '">' + esc(w) + '</option>'; }).join('');
+    }).catch(function(){});
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function openAddResultModal() {
+  if (allClasses.length) { gi('res-class-sel').value = allClasses[0].name; loadResultStudents(); }
+  openModal('modal-add-result');
+}
+
+function loadResultStudents() {
+  var cls = gi('res-class-sel').value;
+  var students = allStudents.filter(function(s) { return s.class === cls && s.status === 'active'; });
+  setHTML('res-student-sel', students.length
+    ? students.map(function(s) { return '<option value="' + esc(s.studentId) + '">' + esc(s.roll) + ' — ' + esc(s.name) + '</option>'; }).join('')
+    : '<option value="">কোনো ছাত্র নেই</option>');
+  api('getSubjects', cls)
+    .then(function(res) {
+      var subjects = Array.isArray(res) ? res : (res && res.data) || [];
+      setHTML('res-subject-sel', subjects.map(function(s) {
+        return '<option value="' + esc(s.name) + '">' + esc(s.name) + '</option>';
+      }).join('') || '<option value="">কোনো বিষয় নেই</option>');
+    }).catch(function(){});
+}
+
+function saveResult() {
+  var d = {
+    studentId: gi('res-student-sel').value, examName: gi('res-exam-name').value.trim(),
+    year: gi('res-year').value.trim(), subject: gi('res-subject-sel').value,
+    marks: gi('res-marks').value, totalMarks: gi('res-total').value || '100'
+  };
+  if (!d.studentId)   { toast('ছাত্র বেছে নিন', 1);   return; }
+  if (!d.examName)    { toast('পরীক্ষার নাম দিন', 1); return; }
+  if (d.marks === '') { toast('নম্বর দিন', 1);          return; }
+  var btn = gi('btn-save-result');
+  btn.disabled = true; btn.textContent = 'সংরক্ষণ হচ্ছে...';
+  api('saveResult', d)
+    .then(function(res) {
+      btn.disabled = false; btn.textContent = '✅ ফলাফল সংরক্ষণ করুন';
+      if (res && res.success) { closeModal('modal-add-result'); toast('ফলাফল সংরক্ষণ হয়েছে ✅'); loadResults(); loadExamNames(); }
+      else toast((res && res.message) ? res.message : 'ব্যর্থ', 1);
+    }).catch(function(e) {
+      btn.disabled = false; btn.textContent = '✅ ফলাফল সংরক্ষণ করুন';
+      toast('সমস্যা: ' + e.message, 1);
+    });
+}
+
+function loadResults() {
+  var cls  = gi('res-class-filter') ? gi('res-class-filter').value : 'all';
+  var exam = gi('res-exam-filter')  ? gi('res-exam-filter').value  : '';
+  tableLoad('results-tbody', 8);
+  api('getAllResults', { class: cls, examName: exam })
+    .then(function(res) {
+      var data = Array.isArray(res) ? res : (res && res.data) || [];
+      var tbody = gi('results-tbody');
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-cell">কোনো ফলাফল নেই</td></tr>'; return; }
+      tbody.innerHTML = data.slice(0, 200).map(function(r) {
+        return '<tr><td><strong>' + esc(r.roll) + '</strong></td><td>' + esc(r.studentName) + '</td>' +
+          '<td>' + esc(r.class) + '</td><td>' + esc(r.examName) + '</td><td>' + esc(r.subject) + '</td>' +
+          '<td><strong>' + esc(r.marks) + '</strong>/' + esc(r.totalMarks) + '</td>' +
+          '<td><span class="badge badge-green">' + esc(r.grade) + '</span></td>' +
+          '<td>' + esc(r.position || '—') + '</td></tr>';
+      }).join('');
+    }).catch(function(e) { tableErr('results-tbody', 8, e.message); });
+}
+
+function loadExamNames() {
+  api('getExamNames')
+    .then(function(res) {
+      var exams = Array.isArray(res) ? res : (res && res.data) || [];
+      var sel = gi('res-exam-filter'); if (!sel) return;
+      sel.innerHTML = '<option value="">সব পরীক্ষা</option>' +
+        exams.map(function(e) { return '<option value="' + esc(e) + '">' + esc(e) + '</option>'; }).join('');
+    }).catch(function(){});
+}
+
+function openRankModal() {
+  if (allClasses.length) gi('rank-class').value = allClasses[0].name;
+  openModal('modal-rank');
+}
+
+function doGenerateRank() {
+  var cls  = gi('rank-class').value;
+  var exam = gi('rank-exam').value.trim();
+  var year = gi('rank-year').value.trim();
+  if (!cls || !exam || !year) { toast('সব তথ্য পূরণ করুন', 1); return; }
+  api('generateRanks', cls, exam, year)
+    .then(function(res) {
+      closeModal('modal-rank');
+      toast(res && res.success ? 'র‍্যাংক তৈরি হয়েছে ✅' : (res ? res.message : 'ব্যর্থ'), !(res && res.success));
+      loadResults();
+    }).catch(function(e) { toast('সমস্যা: ' + e.message, 1); });
+}
+
+// ============================================================
+// MODAL HELPERS
+// ============================================================
+function openModal(id)  { var e = gi(id); if (e) { e.classList.add('open');    document.body.style.overflow = 'hidden'; } }
+function closeModal(id) { var e = gi(id); if (e) { e.classList.remove('open'); document.body.style.overflow = '';       } }
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.classList.contains('modal-overlay')) closeModal(e.target.id);
+});
+
+// ============================================================
+// TOAST / TABLE HELPERS
+// ============================================================
+function toast(msg, isErr) {
+  var t = gi('toast'); if (!t) return;
+  t.textContent = msg;
+  t.className   = 'toast show' + (isErr ? ' terror' : '');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(function() { t.className = 'toast'; }, 3500);
+}
+function tableLoad(id, cols) {
+  var e = gi(id);
+  if (e) e.innerHTML = '<tr><td colspan="' + cols + '" class="loading-cell"><span class="spinner spinner-g"></span> লোড হচ্ছে...</td></tr>';
+}
+function tableErr(id, cols, msg) {
+  var e = gi(id);
+  if (e) e.innerHTML = '<tr><td colspan="' + cols + '" class="loading-cell" style="color:var(--red)">' + esc(msg) + '</td></tr>';
+}
+</script>
+</body>
+</html>
